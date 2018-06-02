@@ -6,7 +6,7 @@
 <title>
   Class: Discordrb::Commands::CommandBot
   
-    &mdash; Documentation by YARD 0.9.12
+    &mdash; Documentation by YARD 0.9.13
   
 </title>
 
@@ -982,15 +982,7 @@ chain itself (see :advanced_functionality). Default is &#39;:&#39;. Set to an em
 </span>    <span class='label'>quote_end:</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='symbol'>:quote_end</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='symbol'>:quote_start</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
 
     <span class='comment'># Default block for handling internal exceptions, or a string to respond with
-</span>    <span class='label'>rescue:</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='symbol'>:rescue</span><span class='rbracket'>]</span>
-  <span class='rbrace'>}</span>
-
-  <span class='ivar'>@permissions</span> <span class='op'>=</span> <span class='lbrace'>{</span>
-    <span class='label'>roles:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span>
-    <span class='label'>users:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-  <span class='rbrace'>}</span>
-
-  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='ivar'>@attributes</span><span class='lbracket'>[</span><span class='symbol'>:help_command</span><span class='rbracket'>]</span>
+</span>    <span class='label'>rescue:</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='symbol'>:help_command</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_command'>command</span><span class='lparen'>(</span><span class='ivar'>@attributes</span><span class='lbracket'>[</span><span class='symbol'>:help_command</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>max_args:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>description:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Shows a list of all the commands available or displays help for a specific command.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>usage:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>help [command name]</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_event'>event</span><span class='comma'>,</span> <span class='id identifier rubyid_command_name'>command_name</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_command_name'>command_name</span>
       <span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='ivar'>@commands</span><span class='lbracket'>[</span><span class='id identifier rubyid_command_name'>command_name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span>
@@ -2144,9 +2136,9 @@ commands that have chain_usable set to false will not work.</p>
 </div>
 
       <div id="footer">
-  Generated on Sat May 19 11:19:29 2018 by
+  Generated on Sat Jun  2 13:58:43 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.12 (ruby-2.5.1).
+  0.9.13 (ruby-2.5.1).
 </div>
 
     </div>
