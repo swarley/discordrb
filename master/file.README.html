@@ -75,6 +75,7 @@
 <li><a href="https://github.com/meew0/discordrb#dependencies">Dependencies</a></li>
 <li><a href="https://github.com/meew0/discordrb#installation">Installation</a></li>
 <li><a href="https://github.com/meew0/discordrb#usage">Usage</a></li>
+<li><a href="https://github.com/meew0/discordrb#webhooks-client">Webhooks Client</a></li>
 <li><a href="https://github.com/meew0/discordrb#support">Support</a></li>
 <li><a href="https://github.com/meew0/discordrb#development">Development</a>, <a href="https://github.com/meew0/discordrb#contributing">Contributing</a></li>
 <li><a href="https://github.com/meew0/discordrb#license">License</a></li>
@@ -223,6 +224,35 @@
 
 <p>If you&#39;ve made an open source project on GitHub that uses discordrb, consider adding the <code>discordrb</code> topic to your repo!</p>
 
+<h2>Webhooks Client</h2>
+
+<p>Also included is a webhooks client, which can be used as a separate gem <code>discordrb-webhooks</code>. This special client can be used to form requests to Discord webhook URLs in a high-level manner.</p>
+
+<ul>
+<li><a href="http://www.rubydoc.info/gems/discordrb-webhooks"><code>discordrb-webhooks</code> documentation</a></li>
+<li><a href="https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks">More information about webhooks</a></li>
+<li><a href="https://leovoel.github.io/embed-visualizer/">Embed visualizer tool</a> - Includes a discordrb code generator for forming embeds</li>
+</ul>
+
+<h3>Usage</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>discordrb/webhooks</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='const'>WEBHOOK_URL</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://discordapp.com/api/webhooks/424070213278105610/yByxDncRvHi02mhKQheviQI2erKkfRRwFcEp0MMBfib1ds6ZHN13xhPZNS2-fJo_ApSw</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span>
+
+<span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Discordrb/Webhooks.html" title="Discordrb::Webhooks (module)">Webhooks</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Discordrb/Webhooks/Client.html" title="Discordrb::Webhooks::Client (class)">Client</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Discordrb/Webhooks/Client.html#initialize-instance_method" title="Discordrb::Webhooks::Client#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>url:</span> <span class='const'>WEBHOOK_URL</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_builder'>builder</span><span class='op'>|</span>
+  <span class='id identifier rubyid_builder'>builder</span><span class='period'>.</span><span class='id identifier rubyid_content'>content</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hello world!</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_builder'>builder</span><span class='period'>.</span><span class='id identifier rubyid_add_embed'>add_embed</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_embed'>embed</span><span class='op'>|</span>
+    <span class='id identifier rubyid_embed'>embed</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Embed title</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_embed'>embed</span><span class='period'>.</span><span class='id identifier rubyid_description'>description</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Embed description</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_embed'>embed</span><span class='period'>.</span><span class='id identifier rubyid_timestamp'>timestamp</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<p><strong>Note:</strong> The <code>discordrb</code> gem relies on <code>discordrb-webhooks</code>. If you already have <code>discordrb</code> installed, <code>require &#39;discordrb/webhooks&#39;</code> will include all of the <code>Webhooks</code> features as well.</p>
+
 <h2>Support</h2>
 
 <p>You can find me (@meew0, ID 66237334693085184) on the unofficial Discord API server - if you have a question, just ask there, I or somebody else will probably answer you: <a href="https://discord.gg/3Trm6FW">https://discord.gg/3Trm6FW</a></p>
@@ -245,7 +275,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Tue Jun  5 23:27:20 2018 by
+  Generated on Tue Jun 12 14:50:57 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.14 (ruby-2.5.1).
 </div>
