@@ -330,7 +330,7 @@
 
     <ul class="summary">
       
-        <li class="public ">
+        <li class="public deprecated">
   <span class="summary_signature">
     
       <a href="#add_await-instance_method" title="#add_await (instance method)">#<strong>add_await</strong>(key, type, attributes = {}) {|event| ... } &#x21d2; Await </a>
@@ -343,11 +343,11 @@
   
   
   
-  
+  <span class="deprecated note title">deprecated</span>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Add an await the bot should listen to.</p>
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>Will be changed to blocking behavior in v4.0. Use <span class='object_link'><a href="#add_await!-instance_method" title="Discordrb::Bot#add_await! (method)">#add_await!</a></span> instead.</p>
 </div></span>
   
 </li>
@@ -2236,7 +2236,9 @@ same codebase. Not required but I recommend setting it anyway.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Add an await the bot should listen to. For information on awaits, see <span class='object_link'><a href="Await.html" title="Discordrb::Await (class)">Await</a></span>.</p>
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>Will be changed to blocking behavior in v4.0. Use <span class='object_link'><a href="#add_await!-instance_method" title="Discordrb::Bot#add_await! (method)">#add_await!</a></span> instead.</p>
+</div></div>
+<p>Add an await the bot should listen to. For information on awaits, see <span class='object_link'><a href="Await.html" title="Discordrb::Await (class)">Await</a></span>.</p>
 
 
   </div>
@@ -2354,15 +2356,15 @@ same codebase. Not required but I recommend setting it anyway.</p>
       <pre class="lines">
 
 
-555
 556
 557
 558
 559
-560</pre>
+560
+561</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 555</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 556</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_await'>add_await</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You can&#39;t await an AwaitEvent!</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="../Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Events.html" title="Discordrb::Events (module)">Events</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Events/AwaitEvent.html" title="Discordrb::Events::AwaitEvent (class)">AwaitEvent</a></span></span>
@@ -2493,7 +2495,6 @@ same codebase. Not required but I recommend setting it anyway.</p>
       <pre class="lines">
 
 
-567
 568
 569
 570
@@ -2523,10 +2524,11 @@ same codebase. Not required but I recommend setting it anyway.</p>
 594
 595
 596
-597</pre>
+597
+598</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 567</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 568</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_await!'>add_await!</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You can&#39;t await an AwaitEvent!</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="../Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Events.html" title="Discordrb::Events (module)">Events</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Events/AwaitEvent.html" title="Discordrb::Events::AwaitEvent (class)">AwaitEvent</a></span></span>
@@ -2922,12 +2924,12 @@ waits until the data has been received via the websocket. This may make the exec
       <pre class="lines">
 
 
-621
 622
-623</pre>
+623
+624</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 621</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 622</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../Discordrb.html#LOGGER-constant" title="Discordrb::LOGGER (constant)">LOGGER</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='id identifier rubyid_message'>message</span><span class='rparen'>)</span>
@@ -3064,12 +3066,12 @@ It is recommended that you use <span class='object_link'><a href="Invite.html#de
       <pre class="lines">
 
 
-631
 632
-633</pre>
+633
+634</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 631</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 632</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dispatch'>dispatch</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_handle_dispatch'>handle_dispatch</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -3534,12 +3536,12 @@ presence and any other events will still be received.</p>
       <pre class="lines">
 
 
-603
 604
-605</pre>
+605
+606</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 603</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 604</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ignore_user'>ignore_user</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
   <span class='ivar'>@ignored_ids</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_resolve_id'>resolve_id</span>
@@ -3610,12 +3612,12 @@ presence and any other events will still be received.</p>
       <pre class="lines">
 
 
-616
 617
-618</pre>
+618
+619</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 616</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 617</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ignored?'>ignored?</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
   <span class='ivar'>@ignored_ids</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_resolve_id'>resolve_id</span><span class='rparen'>)</span>
@@ -3938,12 +3940,12 @@ presence and any other events will still be received.</p>
       <pre class="lines">
 
 
-626
 627
-628</pre>
+628
+629</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 626</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 627</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log_exception'>log_exception</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../Discordrb.html#LOGGER-constant" title="Discordrb::LOGGER (constant)">LOGGER</a></span></span><span class='period'>.</span><span class='id identifier rubyid_log_exception'>log_exception</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span>
@@ -4256,14 +4258,14 @@ to edit user data like the current username (see <span class='object_link'><a hr
       <pre class="lines">
 
 
-641
 642
 643
 644
-645</pre>
+645
+646</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 641</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 642</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prune_empty_groups'>prune_empty_groups</span>
   <span class='ivar'>@channels</span><span class='period'>.</span><span class='id identifier rubyid_each_value'>each_value</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_channel'>channel</span><span class='op'>|</span>
@@ -4300,12 +4302,12 @@ to edit user data like the current username (see <span class='object_link'><a hr
       <pre class="lines">
 
 
-636
 637
-638</pre>
+638
+639</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 636</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 637</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_raise_heartbeat_event'>raise_heartbeat_event</span>
   <span class='id identifier rubyid_raise_event'>raise_event</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Events/HeartbeatEvent.html" title="Discordrb::Events::HeartbeatEvent (class)">HeartbeatEvent</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -5252,12 +5254,12 @@ or due to an error. This is necessary to have a continuously running bot.</p>
       <pre class="lines">
 
 
-609
 610
-611</pre>
+611
+612</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 609</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/bot.rb', line 610</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unignore_user'>unignore_user</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
   <span class='ivar'>@ignored_ids</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_resolve_id'>resolve_id</span><span class='rparen'>)</span>
@@ -6003,7 +6005,7 @@ directly, you should leave it as true.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 19 23:35:46 2018 by
+  Generated on Sun Jul  1 01:27:16 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.14 (ruby-2.5.1).
 </div>
