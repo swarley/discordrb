@@ -445,7 +445,21 @@ should be required to use this command. See <span class='object_link'><a href=".
             
           </span>
           
-            &mdash; <div class='inline'><p>Roles that user should have to use this command.</p>
+            &mdash; <div class='inline'><p>Roles that user must have to use this command
+(user must have all of them).</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:allowed_roles</span>
+          <span class="type">(<tt>Array&lt;<span class='object_link'><a href="../Role.html" title="Discordrb::Role (class)">Role</a></span>&gt;</tt>, <tt>Array&lt;#resolve_id&gt;</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Roles that user should have to use this command
+(user should have at least one of them).</p>
 </div>
           
         </li>
@@ -658,9 +672,6 @@ a <code>Proc</code>, it will be passed the <code>CommandEvent</code> along with 
       <pre class="lines">
 
 
-55
-56
-57
 58
 59
 60
@@ -672,10 +683,13 @@ a <code>Proc</code>, it will be passed the <code>CommandEvent</code> along with 
 66
 67
 68
-69</pre>
+69
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/container.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/container.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_command'>command</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@commands</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -741,9 +755,6 @@ a <code>Proc</code>, it will be passed the <code>CommandEvent</code> along with 
       <pre class="lines">
 
 
-90
-91
-92
 93
 94
 95
@@ -755,10 +766,13 @@ a <code>Proc</code>, it will be passed the <code>CommandEvent</code> along with 
 101
 102
 103
-104</pre>
+104
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/container.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/container.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include!'>include!</span><span class='lparen'>(</span><span class='id identifier rubyid_container'>container</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_container_modules'>container_modules</span> <span class='op'>=</span> <span class='id identifier rubyid_container'>container</span><span class='period'>.</span><span class='id identifier rubyid_singleton_class'>singleton_class</span><span class='period'>.</span><span class='id identifier rubyid_included_modules'>included_modules</span>
@@ -824,16 +838,16 @@ a <code>Proc</code>, it will be passed the <code>CommandEvent</code> along with 
       <pre class="lines">
 
 
-80
-81
-82
 83
 84
 85
-86</pre>
+86
+87
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/container.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/container.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include_commands'>include_commands</span><span class='lparen'>(</span><span class='id identifier rubyid_container'>container</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_handlers'>handlers</span> <span class='op'>=</span> <span class='id identifier rubyid_container'>container</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>@commands</span><span class='tstring_end'>&#39;</span></span>
@@ -891,13 +905,13 @@ a <code>Proc</code>, it will be passed the <code>CommandEvent</code> along with 
       <pre class="lines">
 
 
-73
-74
-75
-76</pre>
+76
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/container.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/container.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_command'>remove_command</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='ivar'>@commands</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -913,7 +927,7 @@ a <code>Proc</code>, it will be passed the <code>CommandEvent</code> along with 
 </div>
 
       <div id="footer">
-  Generated on Sat Jul 28 06:09:55 2018 by
+  Generated on Mon Jul 30 05:36:18 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.15 (ruby-2.5.1).
 </div>
