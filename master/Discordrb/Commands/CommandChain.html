@@ -366,9 +366,6 @@
       <pre class="lines">
 
 
-258
-259
-260
 261
 262
 263
@@ -392,10 +389,13 @@
 281
 282
 283
-284</pre>
+284
+285
+286
+287</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/parser.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/parser.rb', line 261</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_old_chain'>old_chain</span> <span class='op'>=</span> <span class='ivar'>@chain</span>
@@ -605,7 +605,10 @@ its chain arguments.</p>
 250
 251
 252
-253</pre>
+253
+254
+255
+256</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/discordrb/commands/parser.rb', line 139</span>
@@ -721,6 +724,9 @@ its chain arguments.</p>
 
     <span class='comment'># Finally execute the command
 </span>    <span class='id identifier rubyid_prev'>prev</span> <span class='op'>=</span> <span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_execute_command'>execute_command</span><span class='lparen'>(</span><span class='id identifier rubyid_command_name'>command_name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='comma'>,</span> <span class='id identifier rubyid_event'>event</span><span class='comma'>,</span> <span class='id identifier rubyid_arguments'>arguments</span><span class='comma'>,</span> <span class='id identifier rubyid_split_chain'>split_chain</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>1</span> <span class='op'>||</span> <span class='ivar'>@subchain</span><span class='rparen'>)</span>
+
+    <span class='comment'># Stop chain if execute_command failed (maybe the command doesn&#39;t exist, or permissions failed, etc.)
+</span>    <span class='kw'>break</span> <span class='kw'>unless</span> <span class='id identifier rubyid_prev'>prev</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_prev'>prev</span>
@@ -735,7 +741,7 @@ its chain arguments.</p>
 </div>
 
       <div id="footer">
-  Generated on Mon Jul 30 05:38:05 2018 by
+  Generated on Tue Jul 31 03:46:40 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.15 (ruby-2.5.1).
 </div>
