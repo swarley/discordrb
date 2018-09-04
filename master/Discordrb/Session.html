@@ -375,15 +375,15 @@ there may be multiple sessions per connection or one session may persist over mu
       <pre class="lines">
 
 
-96
-97
 98
 99
 100
-101</pre>
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_session_id'>session_id</span><span class='rparen'>)</span>
   <span class='ivar'>@session_id</span> <span class='op'>=</span> <span class='id identifier rubyid_session_id'>session_id</span>
@@ -428,12 +428,12 @@ there may be multiple sessions per connection or one session may persist over mu
       <pre class="lines">
 
 
-94
-95
-96</pre>
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sequence'>sequence</span>
   <span class='ivar'>@sequence</span>
@@ -470,12 +470,12 @@ there may be multiple sessions per connection or one session may persist over mu
       <pre class="lines">
 
 
-93
-94
-95</pre>
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_session_id'>session_id</span>
   <span class='ivar'>@session_id</span>
@@ -529,12 +529,12 @@ there may be multiple sessions per connection or one session may persist over mu
       <pre class="lines">
 
 
-122
-123
-124</pre>
+124
+125
+126</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_invalid?'>invalid?</span>
   <span class='ivar'>@invalid</span>
@@ -569,12 +569,12 @@ there may be multiple sessions per connection or one session may persist over mu
       <pre class="lines">
 
 
-118
-119
-120</pre>
+120
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_invalidate'>invalidate</span>
   <span class='ivar'>@invalid</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -609,12 +609,12 @@ there may be multiple sessions per connection or one session may persist over mu
       <pre class="lines">
 
 
-113
-114
-115</pre>
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resume'>resume</span>
   <span class='ivar'>@suspended</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -661,12 +661,12 @@ there may be multiple sessions per connection or one session may persist over mu
       <pre class="lines">
 
 
-126
-127
-128</pre>
+128
+129
+130</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 128</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_should_resume?'>should_resume?</span>
   <span class='id identifier rubyid_suspended?'>suspended?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_invalid?'>invalid?</span>
@@ -701,12 +701,12 @@ there may be multiple sessions per connection or one session may persist over mu
       <pre class="lines">
 
 
-104
-105
-106</pre>
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 106</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_suspend'>suspend</span>
   <span class='ivar'>@suspended</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -753,12 +753,12 @@ there may be multiple sessions per connection or one session may persist over mu
       <pre class="lines">
 
 
-108
-109
-110</pre>
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_suspended?'>suspended?</span>
   <span class='ivar'>@suspended</span>
@@ -773,7 +773,7 @@ there may be multiple sessions per connection or one session may persist over mu
 </div>
 
       <div id="footer">
-  Generated on Tue Sep  4 19:35:52 2018 by
+  Generated on Tue Sep  4 19:37:34 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>

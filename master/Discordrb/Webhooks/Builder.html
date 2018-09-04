@@ -435,17 +435,17 @@
       <pre class="lines">
 
 
-6
-7
 8
 9
 10
 11
 12
-13</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>content:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>username:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>avatar_url:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>tts:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>file:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>embeds:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='ivar'>@content</span> <span class='op'>=</span> <span class='id identifier rubyid_content'>content</span>
@@ -510,12 +510,12 @@ settings will be used instead.</p>
       <pre class="lines">
 
 
-27
-28
-29</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_avatar_url'>avatar_url</span>
   <span class='ivar'>@avatar_url</span>
@@ -569,12 +569,12 @@ settings will be used instead.</p>
       <pre class="lines">
 
 
-17
-18
-19</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_content'>content</span>
   <span class='ivar'>@content</span>
@@ -628,12 +628,12 @@ settings will be used instead.</p>
       <pre class="lines">
 
 
-67
-68
-69</pre>
+69
+70
+71</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_embeds'>embeds</span>
   <span class='ivar'>@embeds</span>
@@ -687,12 +687,12 @@ settings will be used instead.</p>
       <pre class="lines">
 
 
-64
-65
-66</pre>
+66
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_file'>file</span>
   <span class='ivar'>@file</span>
@@ -746,12 +746,12 @@ settings will be used instead.</p>
       <pre class="lines">
 
 
-31
-32
-33</pre>
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tts'>tts</span>
   <span class='ivar'>@tts</span>
@@ -806,12 +806,12 @@ will be used instead.</p>
       <pre class="lines">
 
 
-22
-23
-24</pre>
+24
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_username'>username</span>
   <span class='ivar'>@username</span>
@@ -885,13 +885,13 @@ will be used instead.</p>
       <pre class="lines">
 
 
-43
-44
 45
-46</pre>
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='op'>&lt;&lt;</span><span class='lparen'>(</span><span class='id identifier rubyid_embed'>embed</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Embeds and files are mutually exclusive!</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='ivar'>@file</span>
@@ -992,15 +992,15 @@ will be used instead.</p>
       <pre class="lines">
 
 
-56
-57
 58
 59
 60
-61</pre>
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_embed'>add_embed</span><span class='lparen'>(</span><span class='id identifier rubyid_embed'>embed</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_embed'>embed</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="Embed.html" title="Discordrb::Webhooks::Embed (class)">Embed</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Embed.html#initialize-instance_method" title="Discordrb::Webhooks::Embed#initialize (method)">new</a></span></span>
@@ -1055,18 +1055,18 @@ will be used instead.</p>
       <pre class="lines">
 
 
-70
-71
 72
 73
 74
 75
 76
 77
-78</pre>
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_json_hash'>to_json_hash</span>
   <span class='lbrace'>{</span>
@@ -1124,18 +1124,18 @@ will be used instead.</p>
       <pre class="lines">
 
 
-81
-82
 83
 84
 85
 86
 87
 88
-89</pre>
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/builder.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_multipart_hash'>to_multipart_hash</span>
   <span class='lbrace'>{</span>
@@ -1156,7 +1156,7 @@ will be used instead.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Sep  4 19:35:57 2018 by
+  Generated on Tue Sep  4 19:37:37 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>
