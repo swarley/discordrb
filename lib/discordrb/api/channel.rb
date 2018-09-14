@@ -10,9 +10,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid,
       channel_id,
-      :get,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}",
-      Authorization: token
+      :GET,
+      "/channels/#{channel_id}",
+      headers: { Authorization: token }
     )
   end
 
@@ -24,12 +24,10 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid,
       channel_id,
-      :patch,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}",
-      data.to_json,
-      Authorization: token,
-      content_type: :json,
-      'X-Audit-Log-Reason': reason
+      :PATCH,
+      "/channels/#{channel_id}",
+      headers: { Authorization: token, content_type: :json, 'X-Audit-Log-Reason': reason },
+      payload: data
     )
   end
 
@@ -39,10 +37,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid,
       channel_id,
-      :delete,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}",
-      Authorization: token,
-      'X-Audit-Log-Reason': reason
+      :DELETE,
+      "/channels/#{channel_id}",
+      headers: { Authorization: token, 'X-Audit-Log-Reason': reason }
     )
   end
 
@@ -52,9 +49,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_messages,
       channel_id,
-      :get,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages?limit=#{amount}#{"&before=#{before}" if before}#{"&after=#{after}" if after}#{"&around=#{around}" if around}",
-      Authorization: token
+      :GET,
+      "/channels/#{channel_id}/messages?limit=#{amount}#{"&before=#{before}" if before}#{"&after=#{after}" if after}#{"&around=#{around}" if around}",
+      headers: { Authorization: token }
     )
   end
 
@@ -64,9 +61,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_messages_mid,
       channel_id,
-      :get,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages/#{message_id}",
-      Authorization: token
+      :GET,
+      "/channels/#{channel_id}/messages/#{message_id}",
+      headers: { Authorization: token }
     )
   end
 
@@ -76,29 +73,24 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_messages_mid,
       channel_id,
-      :post,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages",
-      { content: message, tts: tts, embed: embed, nonce: nonce }.to_json,
-      Authorization: token,
-      content_type: :json
+      :POST,
+      "/channels/#{channel_id}/messages",
+      headers: { Authorization: token, content_type: :json },
+      payload: { content: message, tts: tts, embed: embed, nonce: nonce }
     )
-  rescue RestClient::BadRequest => e
-    parsed = JSON.parse(e.response.body)
-    raise Discordrb::Errors::MessageTooLong, "Message over the character limit (#{message.length} > 2000)" if parsed['content']&.is_a?(Array) && parsed['content'].first == 'Must be 2000 or fewer in length.'
-
-    raise
   end
 
   # Send a file as a message to a channel
   # https://discordapp.com/developers/docs/resources/channel#upload-file
+  # TODO: test
   def upload_file(token, channel_id, file, caption: nil, tts: false)
     Discordrb::API.request(
       :channels_cid_messages_mid,
       channel_id,
-      :post,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages",
-      { file: file, content: caption, tts: tts },
-      Authorization: token
+      :POST,
+      "/channels/#{channel_id}/messages",
+      headers: { Authorization: token },
+      payload: { file: file, content: caption, tts: tts }
     )
   end
 
@@ -108,11 +100,10 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_messages_mid,
       channel_id,
-      :patch,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages/#{message_id}",
-      { content: message, mentions: mentions, embed: embed }.to_json,
-      Authorization: token,
-      content_type: :json
+      :PATCH,
+      "/channels/#{channel_id}/messages/#{message_id}",
+      headers: { Authorization: token, content_type: :json },
+      payload: { content: message, mentions: mentions, embed: embed }
     )
   end
 
@@ -122,9 +113,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_messages_mid,
       channel_id,
-      :delete,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages/#{message_id}",
-      Authorization: token
+      :DELETE,
+      "/channels/#{channel_id}/messages/#{message_id}",
+      headers: { Authorization: token }
     )
   end
 
@@ -134,11 +125,10 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_messages_bulk_delete,
       channel_id,
-      :post,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages/bulk-delete",
-      { messages: messages }.to_json,
-      Authorization: token,
-      content_type: :json
+      :POST,
+      "/channels/#{channel_id}/messages/bulk-delete",
+      headers: { Authorization: token, content_type: :json },
+      payload: { messages: messages }
     )
   end
 
@@ -149,11 +139,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_messages_mid_reactions_emoji_me,
       channel_id,
-      :put,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages/#{message_id}/reactions/#{emoji}/@me",
-      nil,
-      Authorization: token,
-      content_type: :json
+      :PUT,
+      "/channels/#{channel_id}/messages/#{message_id}/reactions/#{emoji}/@me",
+      headers: { Authorization: token, content_type: :json }
     )
   end
 
@@ -164,9 +152,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_messages_mid_reactions_emoji_me,
       channel_id,
-      :delete,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages/#{message_id}/reactions/#{emoji}/@me",
-      Authorization: token
+      :DELETE,
+      "/channels/#{channel_id}/messages/#{message_id}/reactions/#{emoji}/@me",
+      headers: { Authorization: token }
     )
   end
 
@@ -177,9 +165,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_messages_mid_reactions_emoji_uid,
       channel_id,
-      :delete,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages/#{message_id}/reactions/#{emoji}/#{user_id}",
-      Authorization: token
+      :DELETE,
+      "/channels/#{channel_id}/messages/#{message_id}/reactions/#{emoji}/#{user_id}",
+      headers: { Authorization: token }
     )
   end
 
@@ -191,8 +179,8 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_messages_mid_reactions_emoji,
       channel_id,
-      :get,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages/#{message_id}/reactions/#{emoji}?#{query_string}",
+      :GET,
+      "/channels/#{channel_id}/messages/#{message_id}/reactions/#{emoji}?#{query_string}",
       Authorization: token
     )
   end
@@ -203,9 +191,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_messages_mid_reactions,
       channel_id,
-      :delete,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/messages/#{message_id}/reactions",
-      Authorization: token
+      :DELETE,
+      "/channels/#{channel_id}/messages/#{message_id}/reactions",
+      headers: { Authorization: token }
     )
   end
 
@@ -215,12 +203,10 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_permissions_oid,
       channel_id,
-      :put,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/permissions/#{overwrite_id}",
-      { type: type, id: overwrite_id, allow: allow, deny: deny }.to_json,
-      Authorization: token,
-      content_type: :json,
-      'X-Audit-Log-Reason': reason
+      :PUT,
+      "/channels/#{channel_id}/permissions/#{overwrite_id}",
+      headers: { Authorization: token, content_type: :json, 'X-Audit-Log-Reason': reason },
+      payload: { type: type, id: overwrite_id, allow: allow, deny: deny }
     )
   end
 
@@ -230,9 +216,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_invites,
       channel_id,
-      :get,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/invites",
-      Authorization: token
+      :GET,
+      "/channels/#{channel_id}/invites",
+      headers: { Authorization: token }
     )
   end
 
@@ -242,12 +228,10 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_invites,
       channel_id,
-      :post,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/invites",
-      { max_age: max_age, max_uses: max_uses, temporary: temporary, unique: unique }.to_json,
-      Authorization: token,
-      content_type: :json,
-      'X-Audit-Log-Reason': reason
+      :POST,
+      "/channels/#{channel_id}/invites",
+      headers: { Authorization: token, content_type: :json, 'X-Audit-Log-Reason': reason },
+      payload: { max_age: max_age, max_uses: max_uses, temporary: temporary, unique: unique }
     )
   end
 
@@ -257,10 +241,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_permissions_oid,
       channel_id,
-      :delete,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/permissions/#{overwrite_id}",
-      Authorization: token,
-      'X-Audit-Log-Reason': reason
+      :DELETE,
+      "/channels/#{channel_id}/permissions/#{overwrite_id}",
+      headers: { Authorization: token, 'X-Audit-Log-Reason': reason }
     )
   end
 
@@ -270,10 +253,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_typing,
       channel_id,
-      :post,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/typing",
-      nil,
-      Authorization: token
+      :POST,
+      "/channels/#{channel_id}/typing",
+      headers: { Authorization: token }
     )
   end
 
@@ -283,9 +265,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_pins,
       channel_id,
-      :get,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/pins",
-      Authorization: token
+      :GET,
+      "/channels/#{channel_id}/pins",
+      headers: { Authorization: token }
     )
   end
 
@@ -295,10 +277,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_pins_mid,
       channel_id,
-      :put,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/pins/#{message_id}",
-      nil,
-      Authorization: token
+      :PUT,
+      "/channels/#{channel_id}/pins/#{message_id}",
+      headers: { Authorization: token }
     )
   end
 
@@ -308,9 +289,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_pins_mid,
       channel_id,
-      :delete,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/pins/#{message_id}",
-      Authorization: token
+      :DELETE,
+      "/channels/#{channel_id}/pins/#{message_id}",
+      headers: { Authorization: token }
     )
   end
 
@@ -319,11 +300,10 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :users_uid_channels,
       nil,
-      :post,
-      "#{Discordrb::API.api_base}/users/#{bot_user_id}/channels",
-      {}.to_json,
-      Authorization: token,
-      content_type: :json
+      :POST,
+      "/users/#{bot_user_id}/channels",
+      headers: { Authorization: token, content_type: :json },
+      payload: {}
     )
   end
 
@@ -332,11 +312,10 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_recipients_uid,
       nil,
-      :put,
-      "#{Discordrb::API.api_base}/channels/#{pm_channel_id}/recipients/#{user_id}",
-      {}.to_json,
-      Authorization: token,
-      content_type: :json
+      :PUT,
+      "/channels/#{pm_channel_id}/recipients/#{user_id}",
+      headers: { Authorization: token, content_type: :json },
+      payload: {}
     )
   rescue RestClient::InternalServerError
     raise 'Attempted to add self as a new group channel recipient!'
@@ -351,11 +330,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_recipients_uid,
       nil,
-      :put,
-      "#{Discordrb::API.api_base}/channels/#{group_channel_id}/recipients/#{user_id}",
-      {}.to_json,
-      Authorization: token,
-      content_type: :json
+      :PUT,
+      "/channels/#{group_channel_id}/recipients/#{user_id}",
+      headers: { Authorization: token, content_type: :json }
     )
   end
 
@@ -364,10 +341,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_recipients_uid,
       nil,
-      :delete,
-      "#{Discordrb::API.api_base}/channels/#{group_channel_id}/recipients/#{user_id}",
-      Authorization: token,
-      content_type: :json
+      :DELETE,
+      "/channels/#{group_channel_id}/recipients/#{user_id}",
+      headers: { Authorization: token }
     )
   end
 
@@ -376,10 +352,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid,
       nil,
-      :delete,
-      "#{Discordrb::API.api_base}/channels/#{group_channel_id}",
-      Authorization: token,
-      content_type: :json
+      :DELETE,
+      "/channels/#{group_channel_id}",
+      headers: { Authorization: token }
     )
   end
 
@@ -389,12 +364,10 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_webhooks,
       channel_id,
-      :post,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/webhooks",
-      { name: name, avatar: avatar }.to_json,
-      Authorization: token,
-      content_type: :json,
-      'X-Audit-Log-Reason': reason
+      :POST,
+      "/channels/#{channel_id}/webhooks",
+      headers: { Authorization: token, content_type: :json, 'X-Audit-Log-Reason': reason },
+      payload: { name: name, avatar: avatar }
     )
   end
 
@@ -404,9 +377,9 @@ module Discordrb::API::Channel
     Discordrb::API.request(
       :channels_cid_webhooks,
       channel_id,
-      :get,
-      "#{Discordrb::API.api_base}/channels/#{channel_id}/webhooks",
-      Authorization: token
+      :GET,
+      "/channels/#{channel_id}/webhooks",
+      headers: { Authorization: token }
     )
   end
 end
