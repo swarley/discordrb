@@ -623,12 +623,12 @@ appearances.</p>
       <pre class="lines">
 
 
-81
-82
-83</pre>
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_author'>author</span>
   <span class='ivar'>@author</span>
@@ -804,12 +804,12 @@ appearances.</p>
       <pre class="lines">
 
 
-101
-102
-103</pre>
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fields'>fields</span>
   <span class='ivar'>@fields</span>
@@ -874,12 +874,12 @@ appearances.</p>
       <pre class="lines">
 
 
-63
-64
-65</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_footer'>footer</span>
   <span class='ivar'>@footer</span>
@@ -951,12 +951,12 @@ appearances.</p>
       <pre class="lines">
 
 
-69
-70
-71</pre>
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_image'>image</span>
   <span class='ivar'>@image</span>
@@ -1028,12 +1028,12 @@ appearances.</p>
       <pre class="lines">
 
 
-75
-76
-77</pre>
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_thumbnail'>thumbnail</span>
   <span class='ivar'>@thumbnail</span>
@@ -1271,12 +1271,12 @@ appearances.</p>
       <pre class="lines">
 
 
-85
-86
-87</pre>
+87
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='op'>&lt;&lt;</span><span class='lparen'>(</span><span class='id identifier rubyid_field'>field</span><span class='rparen'>)</span>
   <span class='ivar'>@fields</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_field'>field</span>
@@ -1378,12 +1378,12 @@ appearances.</p>
       <pre class="lines">
 
 
-96
-97
-98</pre>
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_field'>add_field</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>value:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>inline:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>self</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="EmbedField.html" title="Discordrb::Webhooks::EmbedField (class)">EmbedField</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="EmbedField.html#initialize-instance_method" title="Discordrb::Webhooks::EmbedField#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='label'>inline:</span> <span class='id identifier rubyid_inline'>inline</span><span class='rparen'>)</span>
@@ -1435,8 +1435,6 @@ appearances.</p>
       <pre class="lines">
 
 
-104
-105
 106
 107
 108
@@ -1450,24 +1448,26 @@ appearances.</p>
 116
 117
 118
-119</pre>
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/webhooks/embeds.rb', line 106</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_hash'>to_hash</span>
   <span class='lbrace'>{</span>
     <span class='label'>title:</span> <span class='ivar'>@title</span><span class='comma'>,</span>
     <span class='label'>description:</span> <span class='ivar'>@description</span><span class='comma'>,</span>
     <span class='label'>url:</span> <span class='ivar'>@url</span><span class='comma'>,</span>
-    <span class='label'>timestamp:</span> <span class='ivar'>@timestamp</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@timestamp</span><span class='period'>.</span><span class='id identifier rubyid_utc'>utc</span><span class='period'>.</span><span class='id identifier rubyid_iso8601'>iso8601</span><span class='comma'>,</span>
+    <span class='label'>timestamp:</span> <span class='ivar'>@timestamp</span><span class='op'>&amp;.</span><span class='id identifier rubyid_utc'>utc</span><span class='op'>&amp;.</span><span class='id identifier rubyid_iso8601'>iso8601</span><span class='comma'>,</span>
     <span class='label'>color:</span> <span class='ivar'>@colour</span><span class='comma'>,</span>
-    <span class='label'>footer:</span> <span class='ivar'>@footer</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@footer</span><span class='period'>.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
-    <span class='label'>image:</span> <span class='ivar'>@image</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@image</span><span class='period'>.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
-    <span class='label'>thumbnail:</span> <span class='ivar'>@thumbnail</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@thumbnail</span><span class='period'>.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
-    <span class='label'>video:</span> <span class='ivar'>@video</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@video</span><span class='period'>.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
-    <span class='label'>provider:</span> <span class='ivar'>@provider</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@provider</span><span class='period'>.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
-    <span class='label'>author:</span> <span class='ivar'>@author</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@author</span><span class='period'>.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
+    <span class='label'>footer:</span> <span class='ivar'>@footer</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
+    <span class='label'>image:</span> <span class='ivar'>@image</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
+    <span class='label'>thumbnail:</span> <span class='ivar'>@thumbnail</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
+    <span class='label'>video:</span> <span class='ivar'>@video</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
+    <span class='label'>provider:</span> <span class='ivar'>@provider</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
+    <span class='label'>author:</span> <span class='ivar'>@author</span><span class='op'>&amp;.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='comma'>,</span>
     <span class='label'>fields:</span> <span class='ivar'>@fields</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_hash</span><span class='rparen'>)</span>
   <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
@@ -1481,7 +1481,7 @@ appearances.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 28 14:21:41 2018 by
+  Generated on Mon Oct 29 19:44:50 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>

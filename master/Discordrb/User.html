@@ -524,7 +524,6 @@
       <pre class="lines">
 
 
-164
 165
 166
 167
@@ -537,10 +536,11 @@
 174
 175
 176
-177</pre>
+177
+178</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 165</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_bot'>bot</span><span class='rparen'>)</span>
   <span class='ivar'>@bot</span> <span class='op'>=</span> <span class='id identifier rubyid_bot'>bot</span>
@@ -610,12 +610,12 @@
       <pre class="lines">
 
 
-155
 156
-157</pre>
+157
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 156</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_game'>game</span>
   <span class='ivar'>@game</span>
@@ -669,12 +669,12 @@
       <pre class="lines">
 
 
-152
 153
-154</pre>
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_status'>status</span>
   <span class='ivar'>@status</span>
@@ -730,12 +730,12 @@ will be 0 for no stream or 1 for Twitch streams.</p>
       <pre class="lines">
 
 
-162
 163
-164</pre>
+164
+165</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 162</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stream_type'>stream_type</span>
   <span class='ivar'>@stream_type</span>
@@ -789,12 +789,12 @@ will be 0 for no stream or 1 for Twitch streams.</p>
       <pre class="lines">
 
 
-158
 159
-160</pre>
+160
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 158</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 159</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stream_url'>stream_url</span>
   <span class='ivar'>@stream_url</span>
@@ -844,12 +844,12 @@ user&#39;s ID as a :from attribute.</p>
       <pre class="lines">
 
 
-237
 238
-239</pre>
+239
+240</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 237</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 238</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_await'>await</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_add_await'>add_await</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Events.html" title="Discordrb::Events (module)">Events</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Events/MessageEvent.html" title="Discordrb::Events::MessageEvent (class)">MessageEvent</a></span></span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>from:</span> <span class='ivar'>@id</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -892,12 +892,12 @@ user&#39;s ID as a :from attribute.</p>
       <pre class="lines">
 
 
-244
 245
-246</pre>
+246
+247</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 244</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 245</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_await!'>await!</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_add_await!'>add_await!</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Events.html" title="Discordrb::Events (module)">Events</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Events/MessageEvent.html" title="Discordrb::Events::MessageEvent (class)">MessageEvent</a></span></span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>from:</span> <span class='ivar'>@id</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -949,12 +949,12 @@ user&#39;s ID as a :from attribute.</p>
       <pre class="lines">
 
 
-258
 259
-260</pre>
+260
+261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 259</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_current_bot?'>current_bot?</span>
   <span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_profile'>profile</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='op'>==</span> <span class='ivar'>@id</span>
@@ -989,12 +989,12 @@ user&#39;s ID as a :from attribute.</p>
       <pre class="lines">
 
 
-274
 275
-276</pre>
+276
+277</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 274</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 275</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;User username=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@username</span><span class='embexpr_end'>}</span><span class='tstring_content'> id=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@id</span><span class='embexpr_end'>}</span><span class='tstring_content'> discriminator=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@discriminator</span><span class='embexpr_end'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
@@ -1065,13 +1065,13 @@ user&#39;s ID as a :from attribute.</p>
       <pre class="lines">
 
 
-251
 252
 253
-254</pre>
+254
+255</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 251</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 252</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_on'>on</span><span class='lparen'>(</span><span class='id identifier rubyid_server'>server</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_resolve_id'>resolve_id</span>
@@ -1205,7 +1205,6 @@ user&#39;s ID as a :from attribute.</p>
       <pre class="lines">
 
 
-187
 188
 189
 190
@@ -1214,10 +1213,11 @@ user&#39;s ID as a :from attribute.</p>
 193
 194
 195
-196</pre>
+196
+197</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 188</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pm'>pm</span><span class='lparen'>(</span><span class='id identifier rubyid_content'>content</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_content'>content</span>
@@ -1323,12 +1323,12 @@ user&#39;s ID as a :from attribute.</p>
       <pre class="lines">
 
 
-206
 207
-208</pre>
+208
+209</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 206</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 207</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_file'>send_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_caption'>caption</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_pm'>pm</span><span class='period'>.</span><span class='id identifier rubyid_send_file'>send_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='label'>caption:</span> <span class='id identifier rubyid_caption'>caption</span><span class='rparen'>)</span>
@@ -1380,12 +1380,12 @@ user&#39;s ID as a :from attribute.</p>
       <pre class="lines">
 
 
-263
 264
-265</pre>
+265
+266</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 263</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 264</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_webhook?'>webhook?</span>
   <span class='ivar'>@discriminator</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="Message.html" title="Discordrb::Message (class)">Message</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Message.html#ZERO_DISCRIM-constant" title="Discordrb::Message::ZERO_DISCRIM (constant)">ZERO_DISCRIM</a></span></span>
@@ -1400,7 +1400,7 @@ user&#39;s ID as a :from attribute.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 28 14:21:36 2018 by
+  Generated on Mon Oct 29 19:44:45 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>

@@ -118,7 +118,7 @@
 
     <dl class="constants">
       
-        <dt id="Flags-constant" class="">Flags =
+        <dt id="FLAGS-constant" class="">FLAGS =
           <div class="docstring">
   <div class="discussion">
     <p>This hash maps bit positions to logical permissions.
@@ -579,7 +579,7 @@ of instancing a new Permissions object.</p>
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bits'>bits</span><span class='lparen'>(</span><span class='id identifier rubyid_list'>list</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='int'>0</span>
 
-  <span class='const'><span class='object_link'><a href="#Flags-constant" title="Discordrb::Permissions::Flags (constant)">Flags</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_position'>position</span><span class='comma'>,</span> <span class='id identifier rubyid_flag'>flag</span><span class='op'>|</span>
+  <span class='const'><span class='object_link'><a href="#FLAGS-constant" title="Discordrb::Permissions::FLAGS (constant)">FLAGS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_position'>position</span><span class='comma'>,</span> <span class='id identifier rubyid_flag'>flag</span><span class='op'>|</span>
     <span class='id identifier rubyid_value'>value</span> <span class='op'>+=</span> <span class='int'>2</span><span class='op'>**</span><span class='id identifier rubyid_position'>position</span> <span class='kw'>if</span> <span class='id identifier rubyid_list'>list</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_flag'>flag</span>
   <span class='kw'>end</span>
 
@@ -674,7 +674,7 @@ of instancing a new Permissions object.</p>
       <pre class="code"><span class="info file"># File 'lib/discordrb/permissions.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_init_vars'>init_vars</span>
-  <span class='const'><span class='object_link'><a href="#Flags-constant" title="Discordrb::Permissions::Flags (constant)">Flags</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_position'>position</span><span class='comma'>,</span> <span class='id identifier rubyid_flag'>flag</span><span class='op'>|</span>
+  <span class='const'><span class='object_link'><a href="#FLAGS-constant" title="Discordrb::Permissions::FLAGS (constant)">FLAGS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_position'>position</span><span class='comma'>,</span> <span class='id identifier rubyid_flag'>flag</span><span class='op'>|</span>
     <span class='id identifier rubyid_flag_set'>flag_set</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='ivar'>@bits</span> <span class='op'>&gt;&gt;</span> <span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span> <span class='op'>&amp;</span> <span class='int'>0x1</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>1</span>
     <span class='id identifier rubyid_instance_variable_set'>instance_variable_set</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_flag'>flag</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_flag_set'>flag_set</span>
   <span class='kw'>end</span>
@@ -689,7 +689,7 @@ of instancing a new Permissions object.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 28 14:21:39 2018 by
+  Generated on Mon Oct 29 19:44:48 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>

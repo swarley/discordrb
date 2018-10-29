@@ -1281,7 +1281,7 @@
       <pre class="code"><span class="info file"># File 'lib/discordrb/api/server.rb', line 187</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ban_user'>ban_user</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_server_id'>server_id</span><span class='comma'>,</span> <span class='id identifier rubyid_user_id'>user_id</span><span class='comma'>,</span> <span class='id identifier rubyid_message_days'>message_days</span><span class='comma'>,</span> <span class='id identifier rubyid_reason'>reason</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_reason'>reason</span> <span class='op'>=</span> <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_encode'>encode</span><span class='lparen'>(</span><span class='id identifier rubyid_reason'>reason</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_reason'>reason</span>
+  <span class='id identifier rubyid_reason'>reason</span> <span class='op'>=</span> <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_encode_www_form_component'>encode_www_form_component</span><span class='lparen'>(</span><span class='id identifier rubyid_reason'>reason</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_reason'>reason</span>
   <span class='const'><span class='object_link'><a href="../../Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../API.html" title="Discordrb::API (module)">API</a></span></span><span class='period'>.</span><span class='id identifier rubyid_request'><span class='object_link'><a href="../API.html#request-class_method" title="Discordrb::API.request (method)">request</a></span></span><span class='lparen'>(</span>
     <span class='symbol'>:guilds_sid_bans_uid</span><span class='comma'>,</span>
     <span class='id identifier rubyid_server_id'>server_id</span><span class='comma'>,</span>
@@ -3199,7 +3199,7 @@ connecting to voice, speaking and voice activity (push-to-talk isn&#39;t mandato
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 28 14:21:35 2018 by
+  Generated on Mon Oct 29 19:44:44 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>

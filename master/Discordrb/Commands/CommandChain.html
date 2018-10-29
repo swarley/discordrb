@@ -277,15 +277,15 @@
       <pre class="lines">
 
 
+143
+144
 145
 146
 147
-148
-149
-150</pre>
+148</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/parser.rb', line 145</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/parser.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_chain'>chain</span><span class='comma'>,</span> <span class='id identifier rubyid_bot'>bot</span><span class='comma'>,</span> <span class='id identifier rubyid_subchain'>subchain</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@attributes</span> <span class='op'>=</span> <span class='id identifier rubyid_bot'>bot</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span>
@@ -491,6 +491,8 @@ its chain arguments.</p>
       <pre class="lines">
 
 
+154
+155
 156
 157
 158
@@ -611,7 +613,7 @@ its chain arguments.</p>
 273</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/parser.rb', line 156</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/commands/parser.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_execute_bare'>execute_bare</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_b_start'>b_start</span> <span class='op'>=</span> <span class='op'>-</span><span class='int'>1</span>
@@ -669,8 +671,10 @@ its chain arguments.</p>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>+=</span> <span class='id identifier rubyid_char'>char</span> <span class='kw'>if</span> <span class='id identifier rubyid_b_level'>b_level</span> <span class='op'>&lt;=</span> <span class='int'>0</span>
 
     <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_char'>char</span> <span class='op'>==</span> <span class='ivar'>@attributes</span><span class='lbracket'>[</span><span class='symbol'>:sub_chain_end</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_quoted'>quoted</span>
+
     <span class='id identifier rubyid_b_level'>b_level</span> <span class='op'>-=</span> <span class='int'>1</span>
     <span class='kw'>next</span> <span class='kw'>unless</span> <span class='id identifier rubyid_b_level'>b_level</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span>
+
     <span class='id identifier rubyid_nested'>nested</span> <span class='op'>=</span> <span class='ivar'>@chain</span><span class='lbracket'>[</span><span class='id identifier rubyid_b_start'>b_start</span> <span class='op'>+</span> <span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_index'>index</span> <span class='op'>-</span> <span class='int'>1</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_subchain'>subchain</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Discordrb::Commands::CommandChain (class)">CommandChain</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Discordrb::Commands::CommandChain#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_nested'>nested</span><span class='comma'>,</span> <span class='ivar'>@bot</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>+=</span> <span class='id identifier rubyid_subchain'>subchain</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
@@ -741,7 +745,7 @@ its chain arguments.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 28 14:21:40 2018 by
+  Generated on Mon Oct 29 19:44:49 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>

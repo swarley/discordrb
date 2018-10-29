@@ -523,7 +523,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#send_packet-instance_method" title="#send_packet (instance method)">#<strong>send_packet</strong>(op, packet)  &#x21d2; Object </a>
+      <a href="#send_packet-instance_method" title="#send_packet (instance method)">#<strong>send_packet</strong>(opcode, packet)  &#x21d2; Object </a>
     
 
     
@@ -735,6 +735,8 @@
       <pre class="lines">
 
 
+146
+147
 148
 149
 150
@@ -747,12 +749,10 @@
 157
 158
 159
-160
-161
-162</pre>
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 146</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_bot'>bot</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_shard_key'>shard_key</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_compress_mode'>compress_mode</span> <span class='op'>=</span> <span class='symbol'>:stream</span><span class='rparen'>)</span>
   <span class='ivar'>@token</span> <span class='op'>=</span> <span class='id identifier rubyid_token'>token</span>
@@ -826,12 +826,12 @@ it can simply be set to false.</p>
       <pre class="lines">
 
 
-146
-147
-148</pre>
+144
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 146</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 144</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_heartbeat_acks'>check_heartbeat_acks</span>
   <span class='ivar'>@check_heartbeat_acks</span>
@@ -881,6 +881,8 @@ before it), or if none have been received yet, with 0.</p>
       <pre class="lines">
 
 
+239
+240
 241
 242
 243
@@ -896,12 +898,10 @@ before it), or if none have been received yet, with 0.</p>
 253
 254
 255
-256
-257
-258</pre>
+256</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 241</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 239</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_heartbeat'>heartbeat</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_check_heartbeat_acks'>check_heartbeat_acks</span>
@@ -958,6 +958,8 @@ before it), or if none have been received yet, with 0.</p>
       <pre class="lines">
 
 
+267
+268
 269
 270
 271
@@ -965,12 +967,10 @@ before it), or if none have been received yet, with 0.</p>
 273
 274
 275
-276
-277
-278</pre>
+276</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 269</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 267</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_identify'>identify</span>
   <span class='id identifier rubyid_compress'>compress</span> <span class='op'>=</span> <span class='ivar'>@compress_mode</span> <span class='op'>==</span> <span class='symbol'>:large</span>
@@ -1031,12 +1031,12 @@ before it), or if none have been received yet, with 0.</p>
       <pre class="lines">
 
 
-234
-235
-236</pre>
+232
+233
+234</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 234</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 232</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inject_error'>inject_error</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_handle_internal_close'>handle_internal_close</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span>
@@ -1094,18 +1094,18 @@ outside of testing and implementing highly custom reconnect logic.</p>
       <pre class="lines">
 
 
+212
+213
 214
 215
 216
 217
 218
 219
-220
-221
-222</pre>
+220</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 214</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 212</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inject_reconnect'>inject_reconnect</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># When no URL is specified, the data should be nil, as is the case with Discord-sent packets.
@@ -1167,12 +1167,12 @@ here it is.</p>
       <pre class="lines">
 
 
-228
-229
-230</pre>
+226
+227
+228</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 228</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 226</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inject_resume'>inject_resume</span><span class='lparen'>(</span><span class='id identifier rubyid_seq'>seq</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_send_resume'>send_resume</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_token'>raw_token</span><span class='comma'>,</span> <span class='ivar'>@session_id</span><span class='comma'>,</span> <span class='id identifier rubyid_seq'>seq</span> <span class='op'>||</span> <span class='ivar'>@sequence</span><span class='rparen'>)</span>
@@ -1207,12 +1207,12 @@ here it is.</p>
       <pre class="lines">
 
 
-200
-201
-202</pre>
+198
+199
+200</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 200</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 198</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_kill'>kill</span>
   <span class='ivar'>@ws_thread</span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span>
@@ -1248,12 +1248,12 @@ or with doing processing and then syncing)</p>
       <pre class="lines">
 
 
-206
-207
-208</pre>
+204
+205
+206</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 206</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 204</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_notify_ready'>notify_ready</span>
   <span class='ivar'>@ws_success</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -1301,15 +1301,15 @@ or with doing processing and then syncing)</p>
       <pre class="lines">
 
 
-183
-184
-185</pre>
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 183</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 181</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_open?'>open?</span>
-  <span class='ivar'>@handshake</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@handshake</span><span class='period'>.</span><span class='id identifier rubyid_finished?'>finished?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@closed</span>
+  <span class='ivar'>@handshake</span><span class='op'>&amp;.</span><span class='id identifier rubyid_finished?'>finished?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@closed</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1362,17 +1362,17 @@ or with doing processing and then syncing)</p>
       <pre class="lines">
 
 
+355
+356
 357
 358
 359
 360
 361
-362
-363
-364</pre>
+362</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 357</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 355</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reconnect'>reconnect</span><span class='lparen'>(</span><span class='id identifier rubyid_attempt_resume'>attempt_resume</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='ivar'>@session</span><span class='period'>.</span><span class='id identifier rubyid_suspend'>suspend</span> <span class='kw'>if</span> <span class='ivar'>@session</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_attempt_resume'>attempt_resume</span>
@@ -1419,12 +1419,12 @@ or with doing processing and then syncing)</p>
       <pre class="lines">
 
 
-351
-352
-353</pre>
+349
+350
+351</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 351</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 349</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resume'>resume</span>
   <span class='id identifier rubyid_send_resume'>send_resume</span><span class='lparen'>(</span><span class='ivar'>@token</span><span class='comma'>,</span> <span class='ivar'>@session</span><span class='period'>.</span><span class='id identifier rubyid_session_id'>session_id</span><span class='comma'>,</span> <span class='ivar'>@session</span><span class='period'>.</span><span class='id identifier rubyid_sequence'>sequence</span><span class='rparen'>)</span>
@@ -1459,6 +1459,8 @@ or with doing processing and then syncing)</p>
       <pre class="lines">
 
 
+163
+164
 165
 166
 167
@@ -1467,12 +1469,10 @@ or with doing processing and then syncing)</p>
 170
 171
 172
-173
-174
-175</pre>
+173</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 165</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run_async'>run_async</span>
   <span class='ivar'>@ws_thread</span> <span class='op'>=</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
@@ -1535,12 +1535,12 @@ packets until the given sequence have been processed (in case of a resume).</p>
       <pre class="lines">
 
 
-263
-264
-265</pre>
+261
+262
+263</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 263</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 261</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_heartbeat'>send_heartbeat</span><span class='lparen'>(</span><span class='id identifier rubyid_sequence'>sequence</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_send_packet'>send_packet</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Opcodes.html" title="Discordrb::Opcodes (module)">Opcodes</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Opcodes.html#HEARTBEAT-constant" title="Discordrb::Opcodes::HEARTBEAT (constant)">HEARTBEAT</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_sequence'>sequence</span><span class='rparen'>)</span>
@@ -1669,6 +1669,8 @@ its member list chunked.</p>
       <pre class="lines">
 
 
+296
+297
 298
 299
 300
@@ -1680,12 +1682,10 @@ its member list chunked.</p>
 306
 307
 308
-309
-310
-311</pre>
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 298</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 296</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_identify'>send_identify</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_properties'>properties</span><span class='comma'>,</span> <span class='id identifier rubyid_compress'>compress</span><span class='comma'>,</span> <span class='id identifier rubyid_large_threshold'>large_threshold</span><span class='comma'>,</span> <span class='id identifier rubyid_shard_key'>shard_key</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -1709,7 +1709,7 @@ its member list chunked.</p>
       <div class="method_details ">
   <h3 class="signature " id="send_packet-instance_method">
   
-    #<strong>send_packet</strong>(op, packet)  &#x21d2; <tt>Object</tt> 
+    #<strong>send_packet</strong>(opcode, packet)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -1729,7 +1729,7 @@ or for testing. You probably shouldn&#39;t use this unless you know what you&#39
   
     <li>
       
-        <span class='name'>op</span>
+        <span class='name'>opcode</span>
       
       
         <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
@@ -1767,21 +1767,21 @@ necessary.</p>
       <pre class="lines">
 
 
+406
+407
 408
 409
 410
 411
 412
-413
-414
-415</pre>
+413</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 408</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 406</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_send_packet'>send_packet</span><span class='lparen'>(</span><span class='id identifier rubyid_op'>op</span><span class='comma'>,</span> <span class='id identifier rubyid_packet'>packet</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_send_packet'>send_packet</span><span class='lparen'>(</span><span class='id identifier rubyid_opcode'>opcode</span><span class='comma'>,</span> <span class='id identifier rubyid_packet'>packet</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbrace'>{</span>
-    <span class='label'>op:</span> <span class='id identifier rubyid_op'>op</span><span class='comma'>,</span>
+    <span class='label'>op:</span> <span class='id identifier rubyid_opcode'>opcode</span><span class='comma'>,</span>
     <span class='label'>d:</span> <span class='id identifier rubyid_packet'>packet</span>
   <span class='rbrace'>}</span>
 
@@ -1855,12 +1855,12 @@ probably want to use <span class='object_link'><a href="#send_packet-instance_me
       <pre class="lines">
 
 
-422
-423
-424</pre>
+420
+421
+422</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 422</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 420</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_raw'>send_raw</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='symbol'>:text</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
@@ -1947,18 +1947,18 @@ returned.</p>
       <pre class="lines">
 
 
+391
+392
 393
 394
 395
 396
 397
 398
-399
-400
-401</pre>
+399</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 393</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 391</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_request_members'>send_request_members</span><span class='lparen'>(</span><span class='id identifier rubyid_server_id'>server_id</span><span class='comma'>,</span> <span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -2054,18 +2054,18 @@ session and will just replay some of the events.</p>
       <pre class="lines">
 
 
+374
+375
 376
 377
 378
 379
 380
 381
-382
-383
-384</pre>
+382</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 376</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 374</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_resume'>send_resume</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_session_id'>session_id</span><span class='comma'>,</span> <span class='id identifier rubyid_seq'>seq</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -2172,6 +2172,8 @@ game should be played. The hash can also contain additional attributes for strea
       <pre class="lines">
 
 
+318
+319
 320
 321
 322
@@ -2179,12 +2181,10 @@ game should be played. The hash can also contain additional attributes for strea
 324
 325
 326
-327
-328
-329</pre>
+327</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 320</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 318</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_status_update'>send_status_update</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='id identifier rubyid_since'>since</span><span class='comma'>,</span> <span class='id identifier rubyid_game'>game</span><span class='comma'>,</span> <span class='id identifier rubyid_afk'>afk</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -2292,6 +2292,8 @@ existing voice connection.</p>
       <pre class="lines">
 
 
+336
+337
 338
 339
 340
@@ -2299,12 +2301,10 @@ existing voice connection.</p>
 342
 343
 344
-345
-346
-347</pre>
+345</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 338</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 336</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_send_voice_state_update'>send_voice_state_update</span><span class='lparen'>(</span><span class='id identifier rubyid_server_id'>server_id</span><span class='comma'>,</span> <span class='id identifier rubyid_channel_id'>channel_id</span><span class='comma'>,</span> <span class='id identifier rubyid_self_mute'>self_mute</span><span class='comma'>,</span> <span class='id identifier rubyid_self_deaf'>self_deaf</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lbrace'>{</span>
@@ -2349,16 +2349,16 @@ Discord is immediately aware of the closed connection and makes the bot appear o
       <pre class="lines">
 
 
+189
+190
 191
 192
 193
 194
-195
-196
-197</pre>
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 191</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 189</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stop'>stop</span><span class='lparen'>(</span><span class='id identifier rubyid_no_sync'>no_sync</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@should_reconnect</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -2397,12 +2397,12 @@ Discord is immediately aware of the closed connection and makes the bot appear o
       <pre class="lines">
 
 
-178
-179
-180</pre>
+176
+177
+178</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 178</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/gateway.rb', line 176</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sync'>sync</span>
   <span class='ivar'>@ws_thread</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
@@ -2417,7 +2417,7 @@ Discord is immediately aware of the closed connection and makes the bot appear o
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 28 14:21:38 2018 by
+  Generated on Mon Oct 29 19:44:48 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>

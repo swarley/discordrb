@@ -1153,13 +1153,15 @@ a caption.</p>
 131
 132
 133
-134</pre>
+134
+135</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/discordrb/events/message.rb', line 130</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attach_file'>attach_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Argument is not a file!</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>File</span><span class='rparen'>)</span>
+
   <span class='ivar'>@file</span> <span class='op'>=</span> <span class='id identifier rubyid_file'>file</span>
   <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
@@ -1193,12 +1195,12 @@ a caption.</p>
       <pre class="lines">
 
 
-137
 138
-139</pre>
+139
+140</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/events/message.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/events/message.rb', line 138</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_detach_file'>detach_file</span>
   <span class='ivar'>@file</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -1250,12 +1252,12 @@ a caption.</p>
       <pre class="lines">
 
 
-142
 143
-144</pre>
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/events/message.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/events/message.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_from_bot?'>from_bot?</span>
   <span class='ivar'>@message</span><span class='period'>.</span><span class='id identifier rubyid_user'>user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='op'>==</span> <span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_profile'>profile</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
@@ -1411,12 +1413,12 @@ because it avoids rate limiting problems</p>
       <pre class="lines">
 
 
-148
 149
-150</pre>
+150
+151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/events/message.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/events/message.rb', line 149</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_voice'>voice</span>
   <span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_voice'>voice</span><span class='lparen'>(</span><span class='ivar'>@message</span><span class='period'>.</span><span class='id identifier rubyid_channel'>channel</span><span class='period'>.</span><span class='id identifier rubyid_server'>server</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
@@ -1431,7 +1433,7 @@ because it avoids rate limiting problems</p>
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 28 14:21:40 2018 by
+  Generated on Mon Oct 29 19:44:49 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>

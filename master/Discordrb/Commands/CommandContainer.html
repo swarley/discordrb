@@ -437,7 +437,7 @@ the message by setting this option to false.</p>
           </span>
           
             &mdash; <div class='inline'><p>Discord action permissions (e.g. <code>:kick_members</code>) that
-should be required to use this command. See <span class='object_link'><a href="../Permissions.html#Flags-constant" title="Discordrb::Permissions::Flags (constant)">Permissions::Flags</a></span> for a list.</p>
+should be required to use this command. See <span class='object_link'><a href="../Permissions.html#FLAGS-constant" title="Discordrb::Permissions::FLAGS (constant)">Permissions::FLAGS</a></span> for a list.</p>
 </div>
           
         </li>
@@ -779,9 +779,7 @@ a <code>Proc</code>, it will be passed the <code>CommandEvent</code> along with 
 108
 109
 110
-111
-112
-113</pre>
+111</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/discordrb/commands/container.rb', line 99</span>
@@ -790,9 +788,7 @@ a <code>Proc</code>, it will be passed the <code>CommandEvent</code> along with 
   <span class='id identifier rubyid_container_modules'>container_modules</span> <span class='op'>=</span> <span class='id identifier rubyid_container'>container</span><span class='period'>.</span><span class='id identifier rubyid_singleton_class'>singleton_class</span><span class='period'>.</span><span class='id identifier rubyid_included_modules'>included_modules</span>
 
   <span class='comment'># If the container is an EventContainer and we can include it, then do that
-</span>  <span class='kw'>if</span> <span class='id identifier rubyid_container_modules'>container_modules</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../EventContainer.html" title="Discordrb::EventContainer (module)">EventContainer</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:include_events</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_include_events'>include_events</span><span class='lparen'>(</span><span class='id identifier rubyid_container'>container</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
+</span>  <span class='id identifier rubyid_include_events'>include_events</span><span class='lparen'>(</span><span class='id identifier rubyid_container'>container</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_container_modules'>container_modules</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../EventContainer.html" title="Discordrb::EventContainer (module)">EventContainer</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:include_events</span><span class='rparen'>)</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_container_modules'>container_modules</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='const'><span class='object_link'><a href="../../Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Commands.html" title="Discordrb::Commands (module)">Commands</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Discordrb::Commands::CommandContainer (module)">CommandContainer</a></span></span>
     <span class='id identifier rubyid_include_commands'>include_commands</span><span class='lparen'>(</span><span class='id identifier rubyid_container'>container</span><span class='rparen'>)</span>
@@ -939,7 +935,7 @@ a <code>Proc</code>, it will be passed the <code>CommandEvent</code> along with 
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 28 14:21:35 2018 by
+  Generated on Mon Oct 29 19:44:44 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>

@@ -838,20 +838,20 @@ that.</p>
       <pre class="lines">
 
 
-612
-613
-614
-615
 616
 617
 618
 619
 620
 621
-622</pre>
+622
+623
+624
+625
+626</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 612</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 616</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_role'>add_role</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='comma'>,</span> <span class='id identifier rubyid_reason'>reason</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_role_ids'>role_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_role_id_array'>role_id_array</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='rparen'>)</span>
@@ -915,16 +915,18 @@ that.</p>
       <pre class="lines">
 
 
-660
-661
-662
-663</pre>
+666
+667
+668
+669
+670</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 660</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 666</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_colour'>colour</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_colour_role'>colour_role</span>
+
   <span class='id identifier rubyid_colour_role'>colour_role</span><span class='period'>.</span><span class='id identifier rubyid_color'>color</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -978,19 +980,21 @@ that.</p>
       <pre class="lines">
 
 
-652
-653
-654
-655
-656</pre>
+657
+658
+659
+660
+661
+662</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 652</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 657</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_colour_role'>colour_role</span>
   <span class='id identifier rubyid_coloured_roles'>coloured_roles</span> <span class='op'>=</span> <span class='ivar'>@roles</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_colour'>colour</span><span class='period'>.</span><span class='id identifier rubyid_combined'>combined</span><span class='period'>.</span><span class='id identifier rubyid_nonzero?'>nonzero?</span> <span class='rbrace'>}</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_coloured_roles'>coloured_roles</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-  <span class='id identifier rubyid_coloured_roles'>coloured_roles</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:position</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+
+  <span class='id identifier rubyid_coloured_roles'>coloured_roles</span><span class='period'>.</span><span class='id identifier rubyid_max_by'>max_by</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:position</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1043,12 +1047,12 @@ that.</p>
       <pre class="lines">
 
 
-523
-524
-525</pre>
+526
+527
+528</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 523</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 526</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_deaf'>deaf</span>
   <span class='id identifier rubyid_voice_state_attribute'>voice_state_attribute</span><span class='lparen'>(</span><span class='symbol'>:deaf</span><span class='rparen'>)</span>
@@ -1100,12 +1104,12 @@ that.</p>
       <pre class="lines">
 
 
-711
-712
-713</pre>
+718
+719
+720</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 711</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 718</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_display_name'>display_name</span>
   <span class='id identifier rubyid_nickname'>nickname</span> <span class='op'>||</span> <span class='id identifier rubyid_username'>username</span>
@@ -1157,15 +1161,15 @@ that.</p>
       <pre class="lines">
 
 
-640
-641
-642</pre>
+644
+645
+646</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 640</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 644</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_highest_role'>highest_role</span>
-  <span class='ivar'>@roles</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:position</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+  <span class='ivar'>@roles</span><span class='period'>.</span><span class='id identifier rubyid_max_by'>max_by</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:position</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1214,19 +1218,21 @@ that.</p>
       <pre class="lines">
 
 
-645
-646
-647
-648
-649</pre>
+649
+650
+651
+652
+653
+654</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 645</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 649</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hoist_role'>hoist_role</span>
   <span class='id identifier rubyid_hoisted_roles'>hoisted_roles</span> <span class='op'>=</span> <span class='ivar'>@roles</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:hoist</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_hoisted_roles'>hoisted_roles</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-  <span class='id identifier rubyid_hoisted_roles'>hoisted_roles</span><span class='period'>.</span><span class='id identifier rubyid_sort_by'>sort_by</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:position</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+
+  <span class='id identifier rubyid_hoisted_roles'>hoisted_roles</span><span class='period'>.</span><span class='id identifier rubyid_max_by'>max_by</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:position</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1258,12 +1264,12 @@ that.</p>
       <pre class="lines">
 
 
-738
-739
-740</pre>
+745
+746
+747</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 738</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 745</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;Member user=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@user</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> server=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> joined_at=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@joined_at</span><span class='embexpr_end'>}</span><span class='tstring_content'> roles=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@roles</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> voice_channel=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@voice_channel</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> mute=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@mute</span><span class='embexpr_end'>}</span><span class='tstring_content'> deaf=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@deaf</span><span class='embexpr_end'>}</span><span class='tstring_content'> self_mute=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@self_mute</span><span class='embexpr_end'>}</span><span class='tstring_content'> self_deaf=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@self_deaf</span><span class='embexpr_end'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
@@ -1362,17 +1368,17 @@ that.</p>
       <pre class="lines">
 
 
-600
-601
-602
-603
 604
 605
 606
-607</pre>
+607
+608
+609
+610
+611</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 600</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 604</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_modify_roles'>modify_roles</span><span class='lparen'>(</span><span class='id identifier rubyid_add'>add</span><span class='comma'>,</span> <span class='id identifier rubyid_remove'>remove</span><span class='comma'>,</span> <span class='id identifier rubyid_reason'>reason</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add_role_ids'>add_role_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_role_id_array'>role_id_array</span><span class='lparen'>(</span><span class='id identifier rubyid_add'>add</span><span class='rparen'>)</span>
@@ -1433,12 +1439,12 @@ that.</p>
       <pre class="lines">
 
 
-518
-519
-520</pre>
+521
+522
+523</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 518</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 521</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_mute'>mute</span>
   <span class='id identifier rubyid_voice_state_attribute'>voice_state_attribute</span><span class='lparen'>(</span><span class='symbol'>:mute</span><span class='rparen'>)</span>
@@ -1483,12 +1489,12 @@ that.</p>
       <pre class="lines">
 
 
-687
-688
-689</pre>
+694
+695
+696</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 687</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 694</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_nick='>nick=</span><span class='lparen'>(</span><span class='id identifier rubyid_nick'>nick</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_set_nick'>set_nick</span><span class='lparen'>(</span><span class='id identifier rubyid_nick'>nick</span><span class='rparen'>)</span>
@@ -1540,12 +1546,12 @@ that.</p>
       <pre class="lines">
 
 
-568
-569
-570</pre>
+572
+573
+574</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 568</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 572</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_owner?'>owner?</span>
   <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span> <span class='op'>==</span> <span class='kw'>self</span>
@@ -1616,20 +1622,20 @@ that.</p>
       <pre class="lines">
 
 
-627
-628
-629
-630
 631
 632
 633
 634
 635
 636
-637</pre>
+637
+638
+639
+640
+641</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 627</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 631</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_role'>remove_role</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='comma'>,</span> <span class='id identifier rubyid_reason'>reason</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_role_ids'>role_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_role_id_array'>role_id_array</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='rparen'>)</span>
@@ -1708,13 +1714,13 @@ that.</p>
       <pre class="lines">
 
 
-574
-575
-576
-577</pre>
+578
+579
+580
+581</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 574</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 578</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_role?'>role?</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_role'>role</span> <span class='op'>=</span> <span class='id identifier rubyid_role'>role</span><span class='period'>.</span><span class='id identifier rubyid_resolve_id'>resolve_id</span>
@@ -1756,12 +1762,12 @@ that.</p>
       <pre class="lines">
 
 
-580
-581
-582</pre>
+584
+585
+586</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 580</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 584</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_roles='>roles=</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_set_roles'>set_roles</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='rparen'>)</span>
@@ -1817,12 +1823,12 @@ that.</p>
       <pre class="lines">
 
 
-533
-534
-535</pre>
+536
+537
+538</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 533</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 536</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_self_deaf'>self_deaf</span>
   <span class='id identifier rubyid_voice_state_attribute'>voice_state_attribute</span><span class='lparen'>(</span><span class='symbol'>:self_deaf</span><span class='rparen'>)</span>
@@ -1878,12 +1884,12 @@ that.</p>
       <pre class="lines">
 
 
-528
-529
-530</pre>
+531
+532
+533</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 528</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 531</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_self_mute'>self_mute</span>
   <span class='id identifier rubyid_voice_state_attribute'>voice_state_attribute</span><span class='lparen'>(</span><span class='symbol'>:self_mute</span><span class='rparen'>)</span>
@@ -1918,12 +1924,12 @@ that.</p>
       <pre class="lines">
 
 
-667
-668
-669</pre>
+674
+675
+676</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 667</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 674</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_server_deafen'>server_deafen</span>
   <span class='const'><span class='object_link'><a href="API.html" title="Discordrb::API (module)">API</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="API/Server.html" title="Discordrb::API::Server (module)">Server</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_member'><span class='object_link'><a href="API/Server.html#update_member-class_method" title="Discordrb::API::Server.update_member (method)">update_member</a></span></span><span class='lparen'>(</span><span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='ivar'>@user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='label'>deaf:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1958,12 +1964,12 @@ that.</p>
       <pre class="lines">
 
 
-677
-678
-679</pre>
+684
+685
+686</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 677</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 684</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_server_mute'>server_mute</span>
   <span class='const'><span class='object_link'><a href="API.html" title="Discordrb::API (module)">API</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="API/Server.html" title="Discordrb::API::Server (module)">Server</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_member'><span class='object_link'><a href="API/Server.html#update_member-class_method" title="Discordrb::API::Server.update_member (method)">update_member</a></span></span><span class='lparen'>(</span><span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='ivar'>@user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='label'>mute:</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1998,12 +2004,12 @@ that.</p>
       <pre class="lines">
 
 
-672
-673
-674</pre>
+679
+680
+681</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 672</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 679</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_server_undeafen'>server_undeafen</span>
   <span class='const'><span class='object_link'><a href="API.html" title="Discordrb::API (module)">API</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="API/Server.html" title="Discordrb::API::Server (module)">Server</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_member'><span class='object_link'><a href="API/Server.html#update_member-class_method" title="Discordrb::API::Server.update_member (method)">update_member</a></span></span><span class='lparen'>(</span><span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='ivar'>@user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='label'>deaf:</span> <span class='kw'>false</span><span class='rparen'>)</span>
@@ -2038,12 +2044,12 @@ that.</p>
       <pre class="lines">
 
 
-682
-683
-684</pre>
+689
+690
+691</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 682</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 689</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_server_unmute'>server_unmute</span>
   <span class='const'><span class='object_link'><a href="API.html" title="Discordrb::API (module)">API</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="API/Server.html" title="Discordrb::API::Server (module)">Server</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update_member'><span class='object_link'><a href="API/Server.html#update_member-class_method" title="Discordrb::API::Server.update_member (method)">update_member</a></span></span><span class='lparen'>(</span><span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='ivar'>@server</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='ivar'>@user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='label'>mute:</span> <span class='kw'>false</span><span class='rparen'>)</span>
@@ -2119,19 +2125,19 @@ Nicknames for other users.</p>
       <pre class="lines">
 
 
-697
-698
-699
-700
-701
-702
-703
 704
 705
-706</pre>
+706
+707
+708
+709
+710
+711
+712
+713</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 697</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 704</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_nick'>set_nick</span><span class='lparen'>(</span><span class='id identifier rubyid_nick'>nick</span><span class='comma'>,</span> <span class='id identifier rubyid_reason'>reason</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='comment'># Discord uses the empty string to signify &#39;no nickname&#39; so we convert nil into that
@@ -2209,13 +2215,13 @@ Nicknames for other users.</p>
       <pre class="lines">
 
 
-587
-588
-589
-590</pre>
+591
+592
+593
+594</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 587</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 591</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_roles'>set_roles</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='comma'>,</span> <span class='id identifier rubyid_reason'>reason</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_role_ids'>role_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_role_id_array'>role_id_array</span><span class='lparen'>(</span><span class='id identifier rubyid_role'>role</span><span class='rparen'>)</span>
@@ -2268,12 +2274,12 @@ Nicknames for other users.</p>
       <pre class="lines">
 
 
-538
-539
-540</pre>
+541
+542
+543</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 538</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 541</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_voice_channel'>voice_channel</span>
   <span class='id identifier rubyid_voice_state_attribute'>voice_state_attribute</span><span class='lparen'>(</span><span class='symbol'>:voice_channel</span><span class='rparen'>)</span>
@@ -2288,7 +2294,7 @@ Nicknames for other users.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 28 14:21:36 2018 by
+  Generated on Mon Oct 29 19:44:45 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>

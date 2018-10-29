@@ -1349,14 +1349,14 @@ to something else if you&#39;re sending a DCA file.</p>
       <pre class="lines">
 
 
-170
 171
 172
 173
-174</pre>
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/voice/voice_bot.rb', line 170</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/voice/voice_bot.rb', line 171</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_destroy'>destroy</span>
   <span class='id identifier rubyid_stop_playing'>stop_playing</span>
@@ -1637,7 +1637,6 @@ methods in separate threads.</p>
       <pre class="lines">
 
 
-181
 182
 183
 184
@@ -1687,10 +1686,11 @@ methods in separate threads.</p>
 228
 229
 230
-231</pre>
+231
+232</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/voice/voice_bot.rb', line 181</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/voice/voice_bot.rb', line 182</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_play'>play</span><span class='lparen'>(</span><span class='id identifier rubyid_encoded_io'>encoded_io</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_stop_playing'>stop_playing</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@playing</span>
@@ -1734,7 +1734,7 @@ methods in separate threads.</p>
 
     <span class='kw'>begin</span>
       <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_kill'>kill</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TERM</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_encoded_io'>encoded_io</span><span class='period'>.</span><span class='id identifier rubyid_pid'>pid</span><span class='rparen'>)</span>
-    <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='kw'>rescue</span> <span class='const'>StandardError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
       <span class='const'><span class='object_link'><a href="../../Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Discordrb.html#LOGGER-constant" title="Discordrb::LOGGER (constant)">LOGGER</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Failed to kill ffmpeg process! You *might* have a process leak now.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
       <span class='const'><span class='object_link'><a href="../../Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Discordrb.html#LOGGER-constant" title="Discordrb::LOGGER (constant)">LOGGER</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Reason: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_e'>e</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>end</span>
@@ -1805,7 +1805,6 @@ done - the file contains the data exactly as Discord needs it.</p>
       <pre class="lines">
 
 
-254
 255
 256
 257
@@ -1840,16 +1839,17 @@ done - the file contains the data exactly as Discord needs it.</p>
 286
 287
 288
-289</pre>
+289
+290</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/voice/voice_bot.rb', line 254</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/voice/voice_bot.rb', line 255</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_play_dca'>play_dca</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_stop_playing'>stop_playing</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@playing</span>
 
   <span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Reading DCA file </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file'>file</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_input_stream'>input_stream</span> <span class='op'>=</span> <span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_input_stream'>input_stream</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_magic'>magic</span> <span class='op'>=</span> <span class='id identifier rubyid_input_stream'>input_stream</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='int'>4</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Not a DCA1 file! The file might have been corrupted, please recreate it.</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_magic'>magic</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DCA1</span><span class='tstring_end'>&#39;</span></span>
@@ -1871,7 +1871,7 @@ done - the file contains the data exactly as Discord needs it.</p>
 
       <span class='id identifier rubyid_header'>header</span> <span class='op'>=</span> <span class='id identifier rubyid_header_str'>header_str</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s&lt;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
 
-      <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Negative header in DCA file! Your file is likely corrupted.</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_header'>header</span> <span class='op'>&lt;</span> <span class='int'>0</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Negative header in DCA file! Your file is likely corrupted.</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_header'>header</span><span class='period'>.</span><span class='id identifier rubyid_negative?'>negative?</span>
     <span class='kw'>rescue</span> <span class='const'>EOFError</span>
       <span class='ivar'>@bot</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Finished DCA parsing (EOFError)</span><span class='tstring_end'>&#39;</span></span>
       <span class='kw'>next</span> <span class='symbol'>:stop</span>
@@ -1920,12 +1920,12 @@ done - the file contains the data exactly as Discord needs it.</p>
       <pre class="lines">
 
 
-236
 237
-238</pre>
+238
+239</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/voice/voice_bot.rb', line 236</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/voice/voice_bot.rb', line 237</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_play_file'>play_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_play'>play</span> <span class='ivar'>@encoder</span><span class='period'>.</span><span class='id identifier rubyid_encode_file'>encode_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -1973,12 +1973,12 @@ done - the file contains the data exactly as Discord needs it.</p>
       <pre class="lines">
 
 
-243
 244
-245</pre>
+245
+246</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/voice/voice_bot.rb', line 243</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/voice/voice_bot.rb', line 244</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_play_io'>play_io</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_play'>play</span> <span class='ivar'>@encoder</span><span class='period'>.</span><span class='id identifier rubyid_encode_io'>encode_io</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -2234,7 +2234,8 @@ method that the playback has actually stopped.</p>
 164
 165
 166
-167</pre>
+167
+168</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/discordrb/voice/voice_bot.rb', line 157</span>
@@ -2246,6 +2247,7 @@ method that the playback has actually stopped.</p>
   <span class='id identifier rubyid_sleep'>sleep</span> <span class='const'><span class='object_link'><a href="../Voice.html#IDEAL_LENGTH-constant" title="Discordrb::Voice::IDEAL_LENGTH (constant)">IDEAL_LENGTH</a></span></span> <span class='op'>/</span> <span class='float'>1000.0</span> <span class='kw'>if</span> <span class='ivar'>@was_playing_before</span>
 
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid_wait_for_confirmation'>wait_for_confirmation</span>
+
   <span class='ivar'>@has_stopped_playing</span> <span class='op'>=</span> <span class='kw'>false</span>
   <span class='id identifier rubyid_sleep'>sleep</span> <span class='const'><span class='object_link'><a href="../Voice.html#IDEAL_LENGTH-constant" title="Discordrb::Voice::IDEAL_LENGTH (constant)">IDEAL_LENGTH</a></span></span> <span class='op'>/</span> <span class='float'>1000.0</span> <span class='kw'>until</span> <span class='ivar'>@has_stopped_playing</span>
   <span class='ivar'>@has_stopped_playing</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -2260,7 +2262,7 @@ method that the playback has actually stopped.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun Oct 28 14:21:41 2018 by
+  Generated on Mon Oct 29 19:44:50 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>
