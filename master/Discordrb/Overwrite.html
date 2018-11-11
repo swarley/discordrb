@@ -94,7 +94,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/discordrb/data.rb</dd>
+    <dd>lib/discordrb/data/overwrite.rb</dd>
   </dl>
   
 </div>
@@ -423,28 +423,28 @@ permissions a member needs to perform certain actions in context.</p>
       <pre class="lines">
 
 
-1237
-1238
-1239
-1240
-1241
-1242
-1243
-1244
-1245
-1246
-1247
-1248
-1249
-1250
-1251
-1252
-1253
-1254
-1255</pre>
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 1237</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/overwrite.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_object'>object</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>type:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>allow:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>deny:</span> <span class='int'>0</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span>
@@ -519,12 +519,12 @@ permissions a member needs to perform certain actions in context.</p>
       <pre class="lines">
 
 
-1212
-1213
-1214</pre>
+14
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 1212</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/overwrite.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_allow'>allow</span>
   <span class='ivar'>@allow</span>
@@ -578,12 +578,12 @@ permissions a member needs to perform certain actions in context.</p>
       <pre class="lines">
 
 
-1215
-1216
-1217</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 1215</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/overwrite.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_deny'>deny</span>
   <span class='ivar'>@deny</span>
@@ -637,12 +637,12 @@ permissions a member needs to perform certain actions in context.</p>
       <pre class="lines">
 
 
-1206
-1207
-1208</pre>
+8
+9
+10</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 1206</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/overwrite.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_id'>id</span>
   <span class='ivar'>@id</span>
@@ -696,12 +696,12 @@ permissions a member needs to perform certain actions in context.</p>
       <pre class="lines">
 
 
-1209
-1210
-1211</pre>
+11
+12
+13</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 1209</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/overwrite.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type'>type</span>
   <span class='ivar'>@type</span>
@@ -743,16 +743,16 @@ permissions a member needs to perform certain actions in context.</p>
       <pre class="lines">
 
 
-1258
-1259
-1260
-1261
-1262
-1263
-1264</pre>
+60
+61
+62
+63
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 1258</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/overwrite.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='op'>==</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
   <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'><span class='object_link'><a href="../Discordrb.html" title="Discordrb (module)">Discordrb</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Discordrb::Overwrite (class)">Overwrite</a></span></span>
@@ -771,7 +771,7 @@ permissions a member needs to perform certain actions in context.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Nov  8 19:46:53 2018 by
+  Generated on Sun Nov 11 08:27:24 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>

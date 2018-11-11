@@ -99,7 +99,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/discordrb/data.rb</dd>
+    <dd>lib/discordrb/data/webhook.rb</dd>
   </dl>
   
 </div>
@@ -506,28 +506,28 @@
       <pre class="lines">
 
 
-3766
-3767
-3768
-3769
-3770
-3771
-3772
-3773
-3774
-3775
-3776
-3777
-3778
-3779
-3780
-3781
-3782
-3783
-3784</pre>
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3766</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_bot'>bot</span><span class='rparen'>)</span>
   <span class='ivar'>@bot</span> <span class='op'>=</span> <span class='id identifier rubyid_bot'>bot</span>
@@ -602,12 +602,12 @@
       <pre class="lines">
 
 
-3759
-3760
-3761</pre>
+21
+22
+23</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3759</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 21</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_avatar'>avatar</span>
   <span class='ivar'>@avatar</span>
@@ -661,12 +661,12 @@
       <pre class="lines">
 
 
-3750
-3751
-3752</pre>
+12
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3750</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_channel'>channel</span>
   <span class='ivar'>@channel</span>
@@ -720,12 +720,12 @@
       <pre class="lines">
 
 
-3747
-3748
-3749</pre>
+9
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3747</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -780,12 +780,12 @@ ID and avatar if the bot cannot reach the owner</p>
       <pre class="lines">
 
 
-3764
-3765
-3766</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3764</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_owner'>owner</span>
   <span class='ivar'>@owner</span>
@@ -839,12 +839,12 @@ ID and avatar if the bot cannot reach the owner</p>
       <pre class="lines">
 
 
-3753
-3754
-3755</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3753</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_server'>server</span>
   <span class='ivar'>@server</span>
@@ -898,12 +898,12 @@ ID and avatar if the bot cannot reach the owner</p>
       <pre class="lines">
 
 
-3756
-3757
-3758</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3756</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_token'>token</span>
   <span class='ivar'>@token</span>
@@ -962,14 +962,14 @@ ID and avatar if the bot cannot reach the owner</p>
       <pre class="lines">
 
 
-3835
-3836
-3837
-3838
-3839</pre>
+97
+98
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3835</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_avatar_url'>avatar_url</span>
   <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="API.html" title="Discordrb::API (module)">API</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="API/User.html" title="Discordrb::API::User (module)">User</a></span></span><span class='period'>.</span><span class='id identifier rubyid_default_avatar'><span class='object_link'><a href="API/User.html#default_avatar-class_method" title="Discordrb::API::User.default_avatar (method)">default_avatar</a></span></span> <span class='kw'>unless</span> <span class='ivar'>@avatar</span>
@@ -1027,16 +1027,16 @@ ID and avatar if the bot cannot reach the owner</p>
       <pre class="lines">
 
 
-3825
-3826
-3827
-3828
-3829
-3830
-3831</pre>
+87
+88
+89
+90
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3825</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_reason'>reason</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_token?'>token?</span>
@@ -1075,12 +1075,12 @@ ID and avatar if the bot cannot reach the owner</p>
       <pre class="lines">
 
 
-3793
-3794
-3795</pre>
+55
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3793</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_avatar'>delete_avatar</span>
   <span class='id identifier rubyid_update_webhook'>update_webhook</span><span class='lparen'>(</span><span class='label'>avatar:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
@@ -1115,12 +1115,12 @@ ID and avatar if the bot cannot reach the owner</p>
       <pre class="lines">
 
 
-3842
-3843
-3844</pre>
+104
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3842</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;Webhook name=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_content'> id=</span><span class='embexpr_beg'>#{</span><span class='ivar'>@id</span><span class='embexpr_end'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
@@ -1172,12 +1172,12 @@ ID and avatar if the bot cannot reach the owner</p>
       <pre class="lines">
 
 
-3848
-3849
-3850</pre>
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3848</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_token?'>token?</span>
   <span class='ivar'>@owner</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1288,16 +1288,16 @@ ID and avatar if the bot cannot reach the owner</p>
       <pre class="lines">
 
 
-3815
-3816
-3817
-3818
-3819
-3820
-3821</pre>
+77
+78
+79
+80
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/discordrb/data.rb', line 3815</span>
+      <pre class="code"><span class="info file"># File 'lib/discordrb/data/webhook.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='comment'># Only pass a value for avatar if the key is defined as sending nil will delete the
@@ -1316,7 +1316,7 @@ ID and avatar if the bot cannot reach the owner</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Nov  8 19:46:54 2018 by
+  Generated on Sun Nov 11 08:27:23 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.5.1).
 </div>
