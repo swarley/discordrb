@@ -332,17 +332,17 @@ module Discordrb::Commands
     end
 
     # Sets the permission level of a user
-    # @param id [Integer] the ID of the user whose level to set
+    # @param id [String, Integer] the ID of the user whose level to set
     # @param level [Integer] the level to set the permission to
     def set_user_permission(id, level)
-      @permissions[:users][id] = level
+      @permissions[:users][id.resolve_id] = level
     end
 
     # Sets the permission level of a role - this applies to all users in the role
-    # @param id [Integer] the ID of the role whose level to set
+    # @param id [String, Integer] the ID of the role whose level to set
     # @param level [Integer] the level to set the permission to
     def set_role_permission(id, level)
-      @permissions[:roles][id] = level
+      @permissions[:roles][id.resolve_id] = level
     end
 
     # Check if a user has permission to do something

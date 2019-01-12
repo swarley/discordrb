@@ -39,7 +39,7 @@ module Discordrb
 
     # Gets a channel given its ID. This queries the internal channel cache, and if the channel doesn't
     # exist in there, it will get the data from Discord.
-    # @param id [Integer] The channel ID for which to search for.
+    # @param id [String, Integer] The channel ID for which to search for.
     # @param server [Server] The server for which to search the channel for. If this isn't specified, it will be
     #   inferred using the API
     # @return [Channel] The channel identified by the ID.
@@ -70,7 +70,7 @@ module Discordrb
 
     # Gets a user by its ID.
     # @note This can only resolve users known by the bot (i.e. that share a server with the bot).
-    # @param id [Integer] The user ID that should be resolved.
+    # @param id [String, Integer] The user ID that should be resolved.
     # @return [User, nil] The user identified by the ID, or `nil` if it couldn't be found.
     def user(id)
       id = id.resolve_id
@@ -88,7 +88,7 @@ module Discordrb
 
     # Gets a server by its ID.
     # @note This can only resolve servers the bot is currently in.
-    # @param id [Integer] The server ID that should be resolved.
+    # @param id [String, Integer] The server ID that should be resolved.
     # @return [Server, nil] The server identified by the ID, or `nil` if it couldn't be found.
     def server(id)
       id = id.resolve_id
@@ -105,8 +105,8 @@ module Discordrb
     end
 
     # Gets a member by both IDs, or `Server` and user ID.
-    # @param server_or_id [Server, Integer] The `Server` or server ID for which a member should be resolved
-    # @param user_id [Integer] The ID of the user that should be resolved
+    # @param server_or_id [Server, String, Integer] The `Server` or server ID for which a member should be resolved
+    # @param user_id [String, Integer] The ID of the user that should be resolved
     # @return [Member, nil] The member identified by the IDs, or `nil` if none could be found
     def member(server_or_id, user_id)
       server_id = server_or_id.resolve_id
@@ -129,7 +129,7 @@ module Discordrb
     # Creates a PM channel for the given user ID, or if one exists already, returns that one.
     # It is recommended that you use {User#pm} instead, as this is mainly for internal use. However,
     # usage of this method may be unavoidable if only the user ID is known.
-    # @param id [Integer] The user ID to generate a private channel for.
+    # @param id [String, Integer] The user ID to generate a private channel for.
     # @return [Channel] A private channel for that user.
     def pm_channel(id)
       id = id.resolve_id
@@ -178,9 +178,9 @@ module Discordrb
     end
 
     # Requests member chunks for a given server ID.
-    # @param id [Integer] The server ID to request chunks for.
+    # @param id [String, Integer] The server ID to request chunks for.
     def request_chunks(id)
-      @gateway.send_request_members(id, '', 0)
+      @gateway.send_request_members(id.resolve_id, '', 0)
     end
 
     # Gets the code for an invite.

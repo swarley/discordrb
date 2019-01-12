@@ -78,7 +78,7 @@ module Discordrb
     # @param token [String] The token that should be used to log in. If your bot is a bot account, you have to specify
     #   this. If you're logging in as a user, make sure to also set the account type to :user so discordrb doesn't think
     #   you're trying to log in as a bot.
-    # @param client_id [Integer] If you're logging in as a bot, the bot's client ID. This is optional, and may be fetched
+    # @param client_id [String, Integer] If you're logging in as a bot, the bot's client ID. This is optional, and may be fetched
     #   from the API by calling {Bot#bot_application} (see {Application}).
     # @param type [Symbol] This parameter lets you manually overwrite the account type. This needs to be set when
     #   logging in as a user, otherwise discordrb will treat you as a bot account. Valid values are `:user` and `:bot`.
@@ -113,7 +113,7 @@ module Discordrb
 
       @should_parse_self = parse_self
 
-      @client_id = client_id
+      @client_id = client_id&.resolve_id
 
       @type = type || :bot
       @name = name
@@ -160,7 +160,7 @@ module Discordrb
 
     # @overload emoji(id)
     #   Return an emoji by its ID
-    #   @param id [Integer, #resolve_id] The emoji's ID.
+    #   @param id [String, Integer] The emoji's ID.
     #   @return [Emoji, nil] the emoji object. `nil` if the emoji was not found.
     # @overload emoji
     #   The list of emoji the bot can use.
@@ -289,7 +289,7 @@ module Discordrb
 
     # Gets the voice bot for a particular server or channel. You can connect to a new channel using the {#voice_connect}
     # method.
-    # @param thing [Channel, Server, Integer] the server or channel you want to get the voice bot for, or its ID.
+    # @param thing [Channel, Server, String, Integer] the server or channel you want to get the voice bot for, or its ID.
     # @return [Voice::VoiceBot, nil] the VoiceBot for the thing you specified, or nil if there is no connection yet
     def voice(thing)
       id = thing.resolve_id
@@ -308,7 +308,7 @@ module Discordrb
     # data can then be sent. After connecting, the bot can also be accessed using {#voice}. If the bot is already
     # connected to voice, the existing connection will be terminated - you don't have to call
     # {Discordrb::Voice::VoiceBot#destroy} before calling this method.
-    # @param chan [Channel, Integer, #resolve_id] The voice channel to connect to.
+    # @param chan [Channel, String, Integer] The voice channel to connect to.
     # @param encrypted [true, false] Whether voice communication should be encrypted using RbNaCl's SecretBox
     #   (uses an XSalsa20 stream cipher for encryption and Poly1305 for authentication)
     # @return [Voice::VoiceBot] the initialized bot over which audio data can then be sent.
@@ -337,7 +337,7 @@ module Discordrb
 
     # Disconnects the client from a specific voice connection given the server ID. Usually it's more convenient to use
     # {Discordrb::Voice::VoiceBot#destroy} rather than this.
-    # @param server [Server, Integer, #resolve_id] The server the voice connection is on.
+    # @param server [Server, String, Integer] The server the voice connection is on.
     # @param destroy_vws [true, false] Whether or not the VWS should also be destroyed. If you're calling this method
     #   directly, you should leave it as true.
     def voice_destroy(server, destroy_vws = true)
@@ -356,7 +356,7 @@ module Discordrb
     end
 
     # Sends a text message to a channel given its ID and the message's content.
-    # @param channel [Channel, Integer, #resolve_id] The channel to send something to.
+    # @param channel [Channel, String, Integer] The channel to send something to.
     # @param content [String] The text that should be sent as a message. It is limited to 2000 characters (Discord imposed).
     # @param tts [true, false] Whether or not this message should be sent using Discord text-to-speech.
     # @param embed [Hash, Discordrb::Webhooks::Embed, nil] The rich embed to append to this message.
@@ -371,7 +371,7 @@ module Discordrb
 
     # Sends a text message to a channel given its ID and the message's content,
     # then deletes it after the specified timeout in seconds.
-    # @param channel [Channel, Integer, #resolve_id] The channel to send something to.
+    # @param channel [Channel, String, Integer] The channel to send something to.
     # @param content [String] The text that should be sent as a message. It is limited to 2000 characters (Discord imposed).
     # @param timeout [Float] The amount of time in seconds after which the message sent will be deleted.
     # @param tts [true, false] Whether or not this message should be sent using Discord text-to-speech.
@@ -390,7 +390,7 @@ module Discordrb
 
     # Sends a file to a channel. If it is an image, it will automatically be embedded.
     # @note This executes in a blocking way, so if you're sending long files, be wary of delays.
-    # @param channel [Channel, Integer, #resolve_id] The channel to send something to.
+    # @param channel [Channel, String, Integer] The channel to send something to.
     # @param file [File] The file that should be sent.
     # @param caption [string] The caption for the file.
     # @param tts [true, false] Whether or not this file's caption should be sent using Discord text-to-speech.
@@ -639,19 +639,19 @@ module Discordrb
     # Add a user to the list of ignored users. Those users will be ignored in message events at event processing level.
     # @note Ignoring a user only prevents any message events (including mentions, commands etc.) from them! Typing and
     #   presence and any other events will still be received.
-    # @param user [User, Integer, #resolve_id] The user, or its ID, to be ignored.
+    # @param user [User, String, Integer] The user, or its ID, to be ignored.
     def ignore_user(user)
       @ignored_ids << user.resolve_id
     end
 
     # Remove a user from the ignore list.
-    # @param user [User, Integer, #resolve_id] The user, or its ID, to be unignored.
+    # @param user [User, String, Integer] The user, or its ID, to be unignored.
     def unignore_user(user)
       @ignored_ids.delete(user.resolve_id)
     end
 
     # Checks whether a user is being ignored.
-    # @param user [User, Integer, #resolve_id] The user, or its ID, to check.
+    # @param user [User, String, Integer] The user, or its ID, to check.
     # @return [true, false] whether or not the user is ignored.
     def ignored?(user)
       @ignored_ids.include?(user.resolve_id)

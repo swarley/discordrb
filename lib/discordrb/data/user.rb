@@ -146,7 +146,7 @@ module Discordrb
     end
 
     # Gets the member this user is on a server
-    # @param server [Server] The server to get the member for
+    # @param server [String, Integer, Server] The server to get the member for
     # @return [Member] this user as a member on a particular server
     def on(server)
       id = server.resolve_id

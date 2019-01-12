@@ -138,7 +138,7 @@ module Discordrb
     alias_method :parent, :category
 
     # Sets this channels parent category
-    # @param channel [Channel, #resolve_id] the target category channel
+    # @param channel [Channel, String, Integer] the target category channel
     # @raise [ArgumentError] if the target channel isn't a category
     def category=(channel)
       channel = @bot.channel(channel)
@@ -150,7 +150,7 @@ module Discordrb
     alias_method :parent=, :category=
 
     # Sorts this channel's position to follow another channel.
-    # @param other [Channel, #resolve_id, nil] The channel below which this channel should be sorted. If the given
+    # @param other [Channel, String, Integer, nil] The channel below which this channel should be sorted. If the given
     #   channel is a category, this channel will be sorted at the top of that category. If it is `nil`, the channel will
     #   be sorted at the top of the channel list.
     # @param lock_permissions [true, false] Whether the channel's permissions should be synced to the category's
@@ -381,7 +381,7 @@ module Discordrb
     end
 
     # Deletes a message on this channel. Mostly useful in case a message needs to be deleted when only the ID is known
-    # @param message [Message, String, Integer, #resolve_id] The message that should be deleted.
+    # @param message [Message, String, Integer] The message that should be deleted.
     def delete_message(message)
       API::Channel.delete_message(@bot.token, @id, message.resolve_id)
     end
@@ -463,7 +463,7 @@ module Discordrb
     end
 
     # Deletes a permission overwrite for this channel
-    # @param target [Member, User, Role, Profile, Recipient, #resolve_id] What permission overwrite to delete
+    # @param target [Member, User, Role, Profile, Recipient, String, Integer] What permission overwrite to delete
     #   @param reason [String] The reason the for the overwrite deletion.
     def delete_overwrite(target, reason = nil)
       raise 'Tried deleting a overwrite for an invalid target' unless target.is_a?(Member) || target.is_a?(User) || target.is_a?(Role) || target.is_a?(Profile) || target.is_a?(Recipient) || target.respond_to?(:resolve_id)
@@ -502,18 +502,18 @@ module Discordrb
     # Retrieves some of this channel's message history.
     # @param amount [Integer] How many messages to retrieve. This must be less than or equal to 100, if it is higher
     #   than 100 it will be treated as 100 on Discord's side.
-    # @param before_id [Integer] The ID of the most recent message the retrieval should start at, or nil if it should
+    # @param before_id [String, Integer] The ID of the most recent message the retrieval should start at, or nil if it should
     #   start at the current message.
-    # @param after_id [Integer] The ID of the oldest message the retrieval should start at, or nil if it should start
+    # @param after_id [String, Integer] The ID of the oldest message the retrieval should start at, or nil if it should start
     #   as soon as possible with the specified amount.
-    # @param around_id [Integer] The ID of the message retrieval should start from, reading in both directions
+    # @param around_id [String, Integer] The ID of the message retrieval should start from, reading in both directions
     # @example Count the number of messages in the last 50 messages that contain the letter 'e'.
     #   message_count = channel.history(50).count {|message| message.content.include? "e"}
     # @example Get the last 10 messages before the provided message.
     #   last_ten_messages = channel.history(10, message.id)
     # @return [Array<Message>] the retrieved messages.
     def history(amount, before_id = nil, after_id = nil, around_id = nil)
-      logs = API::Channel.messages(@bot.token, @id, amount, before_id, after_id, around_id)
+      logs = API::Channel.messages(@bot.token, @id, amount, before_id&.resolve_id, after_id&.resolve_id, around_id&.resolve_id)
       JSON.parse(logs).map { |message| Message.new(message, @bot) }
     end
 
@@ -526,10 +526,10 @@ module Discordrb
     end
 
     # Returns a single message from this channel's history by ID.
-    # @param message_id [Integer] The ID of the message to retrieve.
+    # @param message_id [String, Integer] The ID of the message to retrieve.
     # @return [Message, nil] the retrieved message, or `nil` if it couldn't be found.
     def load_message(message_id)
-      response = API::Channel.message(@bot.token, @id, message_id)
+      response = API::Channel.message(@bot.token, @id, message_id.resolve_id)
       Message.new(JSON.parse(response), @bot)
     rescue RestClient::ResourceNotFound
       nil
@@ -575,7 +575,7 @@ module Discordrb
     end
 
     # Deletes a collection of messages
-    # @param messages [Array<Message, Integer, #resolve_id>] the messages (or message IDs) to delete. Total must be an amount between 2 and 100 (Discord limitation)
+    # @param messages [Array<Message, String, Integer>] the messages (or message IDs) to delete. Total must be an amount between 2 and 100 (Discord limitation)
     # @param strict [true, false] Whether an error should be raised when a message is reached that is too old to be bulk
     #   deleted. If this is false only a warning message will be output to the console.
     # @raise [ArgumentError] if the amount of messages is not a value between 2 and 100
@@ -633,19 +633,20 @@ module Discordrb
     end
 
     # Creates a Group channel
-    # @param user_ids [Array<Integer>] Array of user IDs to add to the new group channel (Excluding
+    # @param user_ids [Array<String, Integer>] Array of user IDs to add to the new group channel (Excluding
     #   the recipient of the PM channel).
     # @return [Channel] the created channel.
     def create_group(user_ids)
       raise 'Attempted to create group channel on a non-pm channel!' unless pm?
 
-      response = API::Channel.create_group(@bot.token, @id, user_ids.shift)
+      resolved_user_ids = user_ids.map(&:resolve_id)
+      response = API::Channel.create_group(@bot.token, @id, resolved_user_ids.shift)
       channel = Channel.new(JSON.parse(response), @bot)
-      channel.add_group_users(user_ids)
+      channel.add_group_users(resolved_user_ids)
     end
 
     # Adds a user to a group channel.
-    # @param user_ids [Array<#resolve_id>, #resolve_id] User ID or array of user IDs to add to the group channel.
+    # @param user_ids [Array<String, Integer>, String, Integer] User ID or array of user IDs to add to the group channel.
     # @return [Channel] the group channel.
     def add_group_users(user_ids)
       raise 'Attempted to add a user to a non-group channel!' unless group?
@@ -660,7 +661,7 @@ module Discordrb
     alias_method :add_group_user, :add_group_users
 
     # Removes a user from a group channel.
-    # @param user_ids [Array<#resolve_id>, #resolve_id] User ID or array of user IDs to remove from the group channel.
+    # @param user_ids [Array<String, Integer>, String, Integer] User ID or array of user IDs to remove from the group channel.
     # @return [Channel] the group channel.
     def remove_group_users(user_ids)
       raise 'Attempted to remove a user from a non-group channel!' unless group?
