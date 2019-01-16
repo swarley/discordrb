@@ -106,6 +106,8 @@ module Discordrb::Commands
       end
 
       result = @block.call(event, *arguments)
+      return result if result.is_a?(Discordrb::Embed) || result.is_a?(Discordrb::Webhooks::Embed)
+
       event.drain_into(result)
     rescue LocalJumpError => ex # occurs when breaking
       result = ex.exit_value

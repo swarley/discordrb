@@ -229,6 +229,8 @@ module Discordrb::Commands
          !check_permissions
         event.command = command
         result = command.call(event, arguments, chained, check_permissions)
+        return result if result.is_a?(Discordrb::Embed) || result.is_a?(Discordrb::Webhooks::Embed)
+
         stringify(result)
       else
         event.respond command.attributes[:permission_message].gsub('%name%', name.to_s) if command.attributes[:permission_message]
@@ -487,10 +489,12 @@ module Discordrb::Commands
         begin
           debug("Parsing command chain #{chain}")
           result = @attributes[:advanced_functionality] ? CommandChain.new(chain, self).execute(event) : simple_execute(chain, event)
-          result = event.drain_into(result)
+          result = event.drain_into(result) unless result.is_a?(Discordrb::Embed) || result.is_a?(Discordrb::Webhooks::Embed)
 
           if event.file
             event.send_file(event.file, caption: result)
+          elsif result.is_a?(Discordrb::Embed) || result.is_a?(Discordrb::Webhooks::Embed)
+            event.send_embed nil, result
           else
             event.respond result unless result.nil? || result.empty?
           end
