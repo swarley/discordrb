@@ -127,17 +127,17 @@ module Discordrb
       @type == 3
     end
 
-    # @return [true, false]
+    # @return [true, false] whether or not this channel is a category channel.
     def category?
       @type == 4
     end
 
-    # @return [true, false]
+    # @return [true, false] whether or not this channel is a news channel.
     def news?
       @type == 5
     end
 
-    # @return [true, false]
+    # @return [true, false] whether or not this channel is a store channel.
     def store?
       @type == 6
     end
