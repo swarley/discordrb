@@ -11,7 +11,9 @@ module Discordrb
       dm: 1,
       voice: 2,
       group: 3,
-      category: 4
+      category: 4,
+      news: 5,
+      store: 6
     }.freeze
 
     # @return [String] this channel's name.
@@ -128,6 +130,16 @@ module Discordrb
     # @return [true, false]
     def category?
       @type == 4
+    end
+
+    # @return [true, false]
+    def news?
+      @type == 5
+    end
+
+    # @return [true, false]
+    def store?
+      @type == 6
     end
 
     # @return [Channel, nil] the category channel, if this channel is in a category
