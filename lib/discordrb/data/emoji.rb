@@ -30,9 +30,14 @@ module Discordrb
       process_roles(data['roles']) if server
     end
 
+    # @return [true, false] whether or not this is a custom emoji.
+    def custom?
+      !@id.nil?
+    end
+
     # @return [String] the layout to mention it (or have it used) in a message
     def mention
-      "<#{'a' if animated}:#{name}:#{id}>"
+      custom? ? "<#{'a' if animated}:#{name}:#{id}>" : name
     end
 
     alias_method :use, :mention
