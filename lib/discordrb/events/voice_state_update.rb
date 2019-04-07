@@ -6,7 +6,7 @@ require 'discordrb/data'
 module Discordrb::Events
   # Event raised when a user's voice state updates
   class VoiceStateUpdateEvent < Event
-    attr_reader :user, :token, :suppress, :session_id, :self_mute, :self_deaf, :mute, :deaf, :server, :channel
+    attr_reader :user, :suppress, :session_id, :self_mute, :self_deaf, :mute, :deaf, :server, :channel
 
     # @return [Channel, nil] the old channel this user was on, or nil if the user is newly joining voice.
     attr_reader :old_channel
@@ -14,7 +14,6 @@ module Discordrb::Events
     def initialize(data, old_channel_id, bot)
       @bot = bot
 
-      @token = data['token']
       @suppress = data['suppress']
       @session_id = data['session_id']
       @self_mute = data['self_mute']
@@ -36,66 +35,36 @@ module Discordrb::Events
       # Check for the proper event type
       return false unless event.is_a? VoiceStateUpdateEvent
 
+      name_or_id = proc do |a, e|
+        a == if a.is_a? String
+               e.name
+             elsif a.is_a? Integer
+               e.id
+             else
+               e
+             end
+      end
+
+      # Don't bother if the channel is nil
+      chan_name_or_id = proc { |a, e| name_or_id.call(a, e) if e }
+
+      # Accept 'true', or 'false' as a user set value
+      bool_or_str = proc do |a, e|
+        a == if a.is_a?(String)
+               e.to_s
+             else
+               e
+             end
+      end
+
       [
-        matches_all(@attributes[:from], event.user) do |a, e|
-          a == if a.is_a? String
-                 e.name
-               elsif a.is_a? Integer
-                 e.id
-               else
-                 e
-               end
-        end,
-        matches_all(@attributes[:mute], event.mute) do |a, e|
-          a == if a.is_a?(TrueClass) || a.is_a?(FalseClass)
-                 e.to_s
-               else
-                 e
-               end
-        end,
-        matches_all(@attributes[:deaf], event.deaf) do |a, e|
-          a == if a.is_a?(TrueClass) || a.is_a?(FalseClass)
-                 e.to_s
-               else
-                 e
-               end
-        end,
-        matches_all(@attributes[:self_mute], event.self_mute) do |a, e|
-          a == if a.is_a?(TrueClass) || a.is_a?(FalseClass)
-                 e.to_s
-               else
-                 e
-               end
-        end,
-        matches_all(@attributes[:self_deaf], event.self_deaf) do |a, e|
-          a == if a.is_a?(TrueClass) || a.is_a?(FalseClass)
-                 e.to_s
-               else
-                 e
-               end
-        end,
-        matches_all(@attributes[:channel], event.channel) do |a, e|
-          next unless e # Don't bother if the channel is nil
-
-          a == if a.is_a? String
-                 e.name
-               elsif a.is_a? Integer
-                 e.id
-               else
-                 e
-               end
-        end,
-        matches_all(@attributes[:old_channel], event.old_channel) do |a, e|
-          next unless e # Don't bother if the channel is nil
-
-          a == if a.is_a? String
-                 e.name
-               elsif a.is_a? Integer
-                 e.id
-               else
-                 e
-               end
-        end
+        matches_all(@attributes[:from], event.user, &name_or_id),
+        matches_all(@attributes[:mute], event.mute, &bool_or_str),
+        matches_all(@attributes[:deaf], event.deaf, &bool_or_str),
+        matches_all(@attributes[:self_mute], event.self_mute, &bool_or_str),
+        matches_all(@attributes[:self_deaf], event.self_deaf, &bool_or_str),
+        matches_all(@attributes[:channel], event.channel, &chan_name_or_id),
+        matches_all(@attributes[:old_channel], event.old_channel, &chan_name_or_id)
       ].reduce(true, &:&)
     end
   end
