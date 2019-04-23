@@ -32,9 +32,7 @@ module Discordrb::Middleware
     end
 
     def content_end_regexp(event)
-      # BUG: Doesn't work without a group
-      content = event.content
-      @value.match(content) ? content.end_with?(@value.match(content)[-1]) : false
+      event.content =~ /#{@value}\z/
     end
 
     def content_include(event)
