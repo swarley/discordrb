@@ -275,8 +275,10 @@ module Discordrb
     def add_member_using_token(user, access_token, nick: nil, roles: [], deaf: false, mute: false)
       user_id = user.resolve_id
       roles = roles.is_a?(Array) ? roles.map(&:resolve_id) : [roles.resolve_id]
-      response = JSON.parse(API::Server.add_member(@bot.token, @id, user_id, access_token, nick, roles, deaf, mute))
-      add_member Member.new(response, self, @bot)
+      response = API::Server.add_member(@bot.token, @id, user_id, access_token, nick, roles, deaf, mute)
+      return member(user_id) if response.empty?
+
+      add_member Member.new(JSON.parse(response), self, @bot)
     end
 
     # Returns the amount of members that are candidates for pruning
