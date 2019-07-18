@@ -38,7 +38,7 @@ module Discordrb
     # @return [Array<Embed>] the embed objects contained in this message.
     attr_reader :embeds
 
-    # @return [Hash<String => Reaction>] the reaction objects attached to this message keyed by the name of the reaction
+    # @return [Array<Reaction>] the reaction objects contained in this message.
     attr_reader :reactions
 
     # @return [true, false] whether the message used Text-To-Speech (TTS) or not.
@@ -113,10 +113,10 @@ module Discordrb
 
       @emoji = []
 
-      @reactions = {}
+      @reactions = []
 
       data['reactions']&.each do |element|
-        @reactions[element['emoji']['name']] = Reaction.new(element)
+        @reactions << Reaction.new(element)
       end
 
       @mentions = []
@@ -229,13 +229,13 @@ module Discordrb
     # Check if any reactions were used in this message.
     # @return [true, false] whether or not this message has reactions
     def reactions?
-      @reactions.any?
+      @reactions.empty?
     end
 
     # Returns the reactions made by the current bot or user.
     # @return [Array<Reaction>] the reactions
     def my_reactions
-      @reactions.values.select(&:me)
+      @reactions.select(&:me)
     end
 
     # Reacts to a message.
@@ -250,17 +250,22 @@ module Discordrb
 
     # Returns the list of users who reacted with a certain reaction.
     # @param reaction [String, #to_reaction] the unicode emoji or {Emoji}
+    # @param limit [Integer] the limit of how many users to retrieve. `nil` will return all users
     # @example Get all the users that reacted with a thumbsup.
     #   thumbs_up_reactions = message.reacted_with("\u{1F44D}")
     # @return [Array<User>] the users who used this reaction
-    def reacted_with(reaction)
+    def reacted_with(reaction, limit: 100)
       reaction = reaction.to_reaction if reaction.respond_to?(:to_reaction)
-      response = JSON.parse(API::Channel.get_reactions(@bot.token, @channel.id, @id, reaction))
-      response.map { |d| User.new(d, @bot) }
+      paginator = Paginator.new(limit, :down) do |last_page|
+        after_id = last_page.last.id if last_page
+        last_page = JSON.parse(API::Channel.get_reactions(@bot.token, @channel.id, @id, reaction, nil, after_id, limit))
+        last_page.map { |d| User.new(d, @bot) }
+      end
+      paginator.to_a
     end
 
     # Deletes a reaction made by a user on this message.
-    # @param user [User, #resolve_id] the user who used this reaction
+    # @param user [User, String, Integer] the user or user ID who used this reaction
     # @param reaction [String, #to_reaction] the reaction to remove
     def delete_reaction(user, reaction)
       reaction = reaction.to_reaction if reaction.respond_to?(:to_reaction)

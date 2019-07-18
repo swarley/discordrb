@@ -31,12 +31,12 @@ module Discordrb::API
     @cdn_url || CDN_URL
   end
 
-  # @return [String] the bot name, previously specified using #bot_name=.
+  # @return [String] the bot name, previously specified using {.bot_name=}.
   def bot_name
     @bot_name
   end
 
-  # Sets the bot name to something.
+  # Sets the bot name to something. Used in {.user_agent}. For the bot's username, see {Profile#username=}.
   def bot_name=(value)
     @bot_name = value
   end
@@ -286,6 +286,18 @@ module Discordrb::API
       nil,
       :get,
       "#{api_base}/gateway",
+      Authorization: token
+    )
+  end
+
+  # Get the gateway to be used, with additional information for sharding and
+  # session start limits
+  def gateway_bot(token)
+    request(
+      :gateway_bot,
+      nil,
+      :get,
+      "#{api_base}/gateway/bot",
       Authorization: token
     )
   end
