@@ -785,10 +785,10 @@ module Discordrb
       if user_id == @profile.id && @voices[server_id]
         # If channel_id is nil, we've been disconnected from voice.
         if data['channel_id']
-          @voices[server_id].set_channel channel(data['channel_id'])
+          @voices[server_id].channel = channel(data['channel_id'])
         else
           voice_destroy(server_id)
-        end 
+        end
       end
 
       old_channel_id

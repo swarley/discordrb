@@ -24,6 +24,10 @@ module Discordrb::Voice
     # @return [Channel] the current voice channel
     attr_reader :channel
 
+    # @!visibility private
+    # For internal use only
+    attr_writer :channel
+
     # @return [Integer, nil] the amount of time the stream has been playing, or `nil` if nothing has been played yet.
     attr_reader :stream_time
 
@@ -290,12 +294,6 @@ module Discordrb::Voice
     end
 
     alias_method :play_stream, :play_io
-
-    # @!visibility private
-    # For innternal use only
-    def set_channel(channel)
-      @channel = channel
-    end
 
     private
 
