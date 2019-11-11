@@ -291,6 +291,12 @@ module Discordrb::Voice
 
     alias_method :play_stream, :play_io
 
+    # @!visibility private
+    # For innternal use only
+    def set_channel(channel)
+      @channel = channel
+    end
+
     private
 
     # Plays the data from the @io stream as Discord requires it
