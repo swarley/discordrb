@@ -546,7 +546,7 @@ module Discordrb
     def load_message(message_id)
       response = API::Channel.message(@bot.token, @id, message_id)
       Message.new(JSON.parse(response), @bot)
-    rescue RestClient::ResourceNotFound
+    rescue Discordrb::Errors::ResourceNotFound
       nil
     end
 

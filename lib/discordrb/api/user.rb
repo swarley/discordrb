@@ -95,7 +95,7 @@ module Discordrb::API::User
     Discordrb::API.request(
       :users_me_channels,
       nil,
-      :post,
+      :POST,
       '/users/@me/channels',
       headers: { Authorization: token, content_type: :json },
       payload: { recipient_id: recipient_id }

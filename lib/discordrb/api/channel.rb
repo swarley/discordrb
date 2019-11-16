@@ -313,11 +313,11 @@ module Discordrb::API::Channel
       headers: { Authorization: token, content_type: :json },
       payload: {}
     )
-  rescue RestClient::InternalServerError
+  rescue Discordrb::Errors::InternalServerError
     raise 'Attempted to add self as a new group channel recipient!'
-  rescue RestClient::NoContent
+  rescue Discordrb::Errors::NoContent
     raise 'Attempted to create a group channel with the PM channel recipient!'
-  rescue RestClient::Forbidden
+  rescue Discordrb::Errors::Forbidden
     raise 'Attempted to add a user to group channel without permission!'
   end
 
