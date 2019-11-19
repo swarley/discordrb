@@ -594,12 +594,15 @@ module Discordrb
           end
 
           # Get some data from the socket
-          recv_data = @socket.readpartial(4096)
-
-          # Check if we actually got data
-          unless recv_data
-            # If we didn't, wait
-            sleep 1
+          begin
+            recv_data = @socket.read_nonblock(4096)
+          rescue IO::WaitReadable
+            result = IO.select([@socket], nil, nil, 60)
+            LOGGER.warn('We should have a heartbeat by now, what gives?') if result.nil?
+            retry
+          rescue EOFError
+            @pipe_broken = true
+            handle_internal_close('Socket EOF in websocket_loop')
             next
           end
 
