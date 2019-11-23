@@ -435,6 +435,7 @@ module Discordrb
     def setup_heartbeats(interval)
       # Make sure to reset ACK handling, so we don't keep reconnecting
       @last_heartbeat_acked = true
+      @last_heartbeat_time = Time.now
 
       # We don't want to have redundant heartbeat threads, so if one already exists, don't start a new one
       return if @heartbeat_thread
@@ -597,12 +598,25 @@ module Discordrb
           begin
             recv_data = @socket.read_nonblock(4096)
           rescue IO::WaitReadable
-            IO.select([@socket], nil, nil, @heartbeat_interval)
-            retry unless @closed
+            IO.select([@socket], nil, nil, @heartbeat_interval * 2)
+            if (Time.now - @last_heartbeat_time) >= (@heartbeat_interval * 2)
+              File.open('zombie.txt', 'a+') do |f|
+                f.write "[#{Time.now}] This would have been a hanging zombie\n"
+              end
+            end
+
+            break if @closed
+            retry
           # SSL Sockets can also raise wait writable on read_nonblock
           rescue IO::WaitWritable
-            IO.select(nil, [@socket], nil, @heartbeat_interval)
-            retry unless @closed
+            IO.select(nil, [@socket], nil, @heartbeat_interval * 2)
+            if (Time.now - @last_heartbeat_time) >= (@heartbeat_interval * 2)
+              File.open('zombie.txt', 'a+') do |f|
+                f.write "[#{Time.now}] This would have been a hanging zombie\n"
+              end
+            end
+            break if @closed
+            retry
           rescue EOFError
             @pipe_broken = true
             handle_internal_close('Socket EOF in websocket_loop')
@@ -782,6 +796,7 @@ module Discordrb
     def handle_heartbeat_ack(packet)
       LOGGER.debug("Received heartbeat ack for packet: #{packet.inspect}")
       @last_heartbeat_acked = true if @check_heartbeat_acks
+      @last_heartbeat_time = Time.now
     end
 
     # Called when the websocket has been disconnected in some way - say due to a pipe error while sending
