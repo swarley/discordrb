@@ -594,7 +594,20 @@ module Discordrb
           end
 
           # Get some data from the socket
-          recv_data = @socket.readpartial(4096)
+          begin
+            recv_data = @socket.read_nonblock(4096)
+          rescue IO::WaitReadable
+            IO.select([@socket], nil, nil, @heartbeat_interval)
+            retry unless @closed
+          # SSL Sockets can also raise wait writable on read_nonblock
+          rescue IO::WaitWritable
+            IO.select(nil, [@socket], nil, @heartbeat_interval)
+            retry unless @closed
+          rescue EOFError
+            @pipe_broken = true
+            handle_internal_close('Socket EOF in websocket_loop')
+            next
+          end
 
           # Check if we actually got data
           unless recv_data
