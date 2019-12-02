@@ -606,6 +606,7 @@ module Discordrb
             end
 
             break if @closed
+
             retry
           # SSL Sockets can also raise wait writable on read_nonblock
           rescue IO::WaitWritable
@@ -616,6 +617,7 @@ module Discordrb
               end
             end
             break if @closed
+
             retry
           rescue EOFError
             @pipe_broken = true
