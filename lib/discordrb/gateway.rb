@@ -514,7 +514,21 @@ module Discordrb
         end
 
         socket = OpenSSL::SSL::SSLSocket.new(socket, ctx)
-        socket.connect
+        begin
+          socket.connect_nonblock
+        rescue IO::WaitWritable
+          res = IO.select([socket], nil, nil, 60)
+          if res.nil?
+            LOGGER.debug('[WRITE] Timed out obtaining a socket')
+          end
+          retry
+        rescue IO::WaitReadable
+          res = IO.select(nil, [socket], nil, 60)
+          if res.nil?
+            LOGGER.debug('[READ] Timed out obtaining a socket')
+          end
+          retry
+        end
       end
 
       socket
@@ -599,12 +613,12 @@ module Discordrb
             recv_data = @socket.read_nonblock(4096)
           rescue IO::WaitReadable
             IO.select([@socket], nil, nil, (@heartbeat_interval || 0) * 2)
-            if (Time.now - @last_heartbeat_time) >= ((@heartbeat_interval || 0) * 2)
+            if (Time.now - (@last_heartbeat_time || 1)) >= ((@heartbeat_interval || 0) * 2)
               File.open('zombie.txt', 'a+') do |f|
                 if @closed
-                  f.write "[#{Time.now}] This would have been a hanging zombie\n"
+                  f.write "[#{Time.now}] [READ] This would have been a hanging zombie\n"
                 else
-                  f.write "[#{Time.now}] Long time between heartbeats but not closed?"
+                  f.write "[#{Time.now}] [READ] Long time between heartbeats but not closed?"
                 end
               end
             end
@@ -615,12 +629,12 @@ module Discordrb
           # SSL Sockets can also raise wait writable on read_nonblock
           rescue IO::WaitWritable
             IO.select(nil, [@socket], nil, (@heartbeat_interval || 0) * 2)
-            if (Time.now - @last_heartbeat_time) >= ((@heartbeat_interval || 0) * 2)
+            if (Time.now - (@last_heartbeat_time || 1)) >= ((@heartbeat_interval || 0) * 2)
               File.open('zombie.txt', 'a+') do |f|
                 if @closed
-                  f.write "[#{Time.now}] This would have been a hanging zombie\n"
+                  f.write "[#{Time.now}] [READ] This would have been a hanging zombie\n"
                 else
-                  f.write "[#{Time.now}] Long time between heartbeats but not closed?"
+                  f.write "[#{Time.now}] [READ] Long time between heartbeats but not closed?"
                 end
               end
             end
