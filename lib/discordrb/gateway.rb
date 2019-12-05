@@ -519,7 +519,7 @@ module Discordrb
         rescue IO::WaitReadable, IO::WaitWritable
           res = IO.select([socket], [socket], nil, 60)
           if res.nil?
-            LOGGER.debug('Timed out obtaining a socket')
+            LOGGER.error('Timed out obtaining a socket')
           end
           retry
         end
