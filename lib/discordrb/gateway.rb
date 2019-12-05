@@ -598,10 +598,14 @@ module Discordrb
           begin
             recv_data = @socket.read_nonblock(4096)
           rescue IO::WaitReadable
-            IO.select([@socket], nil, nil, @heartbeat_interval * 2)
-            if (Time.now - @last_heartbeat_time) >= (@heartbeat_interval * 2)
+            IO.select([@socket], nil, nil, (@heartbeat_interval || 0) * 2)
+            if (Time.now - @last_heartbeat_time) >= ((@heartbeat_interval || 0) * 2)
               File.open('zombie.txt', 'a+') do |f|
-                f.write "[#{Time.now}] This would have been a hanging zombie\n"
+                if @closed
+                  f.write "[#{Time.now}] This would have been a hanging zombie\n"
+                else
+                  f.write "[#{Time.now}] Long time between heartbeats but not closed?"
+                end
               end
             end
 
@@ -610,10 +614,14 @@ module Discordrb
             retry
           # SSL Sockets can also raise wait writable on read_nonblock
           rescue IO::WaitWritable
-            IO.select(nil, [@socket], nil, @heartbeat_interval * 2)
-            if (Time.now - @last_heartbeat_time) >= (@heartbeat_interval * 2)
+            IO.select(nil, [@socket], nil, (@heartbeat_interval || 0) * 2)
+            if (Time.now - @last_heartbeat_time) >= ((@heartbeat_interval || 0) * 2)
               File.open('zombie.txt', 'a+') do |f|
-                f.write "[#{Time.now}] This would have been a hanging zombie\n"
+                if @closed
+                  f.write "[#{Time.now}] This would have been a hanging zombie\n"
+                else
+                  f.write "[#{Time.now}] Long time between heartbeats but not closed?"
+                end
               end
             end
             break if @closed
