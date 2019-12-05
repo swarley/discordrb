@@ -516,16 +516,10 @@ module Discordrb
         socket = OpenSSL::SSL::SSLSocket.new(socket, ctx)
         begin
           socket.connect_nonblock
-        rescue IO::WaitWritable
-          res = IO.select([socket], nil, nil, 60)
+        rescue IO::WaitReadable, IO::WaitWritable
+          res = IO.select([socket], [socket], nil, 60)
           if res.nil?
-            LOGGER.debug('[WRITE] Timed out obtaining a socket')
-          end
-          retry
-        rescue IO::WaitReadable
-          res = IO.select(nil, [socket], nil, 60)
-          if res.nil?
-            LOGGER.debug('[READ] Timed out obtaining a socket')
+            LOGGER.debug('Timed out obtaining a socket')
           end
           retry
         end
@@ -600,6 +594,7 @@ module Discordrb
 
       # Create a frame to handle received data
       frame = ::WebSocket::Frame::Incoming::Client.new
+      @last_received = Time.now
 
       until @closed
         begin
@@ -611,30 +606,14 @@ module Discordrb
           # Get some data from the socket
           begin
             recv_data = @socket.read_nonblock(4096)
-          rescue IO::WaitReadable
-            IO.select([@socket], nil, nil, (@heartbeat_interval || 0) * 2)
-            if (Time.now - (@last_heartbeat_time || 1)) >= ((@heartbeat_interval || 0) * 2)
+          rescue IO::WaitReadable, IO::WaitWritable
+            IO.select([@socket], [@socket], nil, 180)
+            if (Time.now - @last_received) >= 180
               File.open('zombie.txt', 'a+') do |f|
                 if @closed
-                  f.write "[#{Time.now}] [READ] This would have been a hanging zombie\n"
+                  f.write "[#{Time.now}] This would have been a hanging zombie\n"
                 else
-                  f.write "[#{Time.now}] [READ] Long time between heartbeats but not closed?"
-                end
-              end
-            end
-
-            break if @closed
-
-            retry
-          # SSL Sockets can also raise wait writable on read_nonblock
-          rescue IO::WaitWritable
-            IO.select(nil, [@socket], nil, (@heartbeat_interval || 0) * 2)
-            if (Time.now - (@last_heartbeat_time || 1)) >= ((@heartbeat_interval || 0) * 2)
-              File.open('zombie.txt', 'a+') do |f|
-                if @closed
-                  f.write "[#{Time.now}] [READ] This would have been a hanging zombie\n"
-                else
-                  f.write "[#{Time.now}] [READ] Long time between heartbeats but not closed?"
+                  f.write "[#{Time.now}] Long time between heartbeats but not closed?\n"
                 end
               end
             end
@@ -653,6 +632,8 @@ module Discordrb
             sleep 1
             next
           end
+
+          @last_received = Time.now
 
           # Check whether the handshake has finished yet
           if @handshaked
@@ -820,7 +801,6 @@ module Discordrb
     def handle_heartbeat_ack(packet)
       LOGGER.debug("Received heartbeat ack for packet: #{packet.inspect}")
       @last_heartbeat_acked = true if @check_heartbeat_acks
-      @last_heartbeat_time = Time.now
     end
 
     # Called when the websocket has been disconnected in some way - say due to a pipe error while sending
