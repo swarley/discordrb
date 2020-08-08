@@ -158,21 +158,21 @@ module Discordrb
     end
 
     # Deletes this message.
-    def delete
-      API::Channel.delete_message(@bot.token, @channel.id, @id)
+    def delete(reason = nil)
+      API::Channel.delete_message(@bot.token, @channel.id, @id, reason)
       nil
     end
 
     # Pins this message
-    def pin
-      API::Channel.pin_message(@bot.token, @channel.id, @id)
+    def pin(reason = nil)
+      API::Channel.pin_message(@bot.token, @channel.id, @id, reason)
       @pinned = true
       nil
     end
 
     # Unpins this message
-    def unpin
-      API::Channel.unpin_message(@bot.token, @channel.id, @id)
+    def unpin(reason = nil)
+      API::Channel.unpin_message(@bot.token, @channel.id, @id, reason)
       @pinned = false
       nil
     end
@@ -229,7 +229,7 @@ module Discordrb
     # Check if any reactions were used in this message.
     # @return [true, false] whether or not this message has reactions
     def reactions?
-      @reactions.empty?
+      !@reactions.empty?
     end
 
     # Returns the reactions made by the current bot or user.
@@ -291,7 +291,7 @@ module Discordrb
 
     # @return [String] a URL that a user can use to navigate to this message in the client
     def link
-      "https://discordapp.com/channels/#{@server&.id || '@me'}/#{@channel.id}/#{@id}"
+      "https://discord.com/channels/#{@server&.id || '@me'}/#{@channel.id}/#{@id}"
     end
 
     alias_method :jump_link, :link

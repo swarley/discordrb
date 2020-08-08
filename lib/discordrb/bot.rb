@@ -101,12 +101,13 @@ module Discordrb
     #   to Discord's gateway. `:none` will request that no payloads are received compressed (not recommended for
     #   production bots). `:large` will request that large payloads are received compressed. `:stream` will request
     #   that all data be received in a continuous compressed stream.
+    # @param intents [:all, Array<Symbol>] Intents that this bot requires. See {Discordrb::INTENTS}
     def initialize(
       log_mode: :normal,
       token: nil, client_id: nil,
       type: nil, name: '', fancy_log: false, suppress_ready: false, parse_self: false,
       shard_id: nil, num_shards: nil, redact_token: true, ignore_bots: false,
-      compress_mode: :large
+      compress_mode: :large, intents: :all
     )
       LOGGER.mode = log_mode
       LOGGER.token = token if redact_token
@@ -127,8 +128,10 @@ module Discordrb
 
       raise 'Token string is empty or nil' if token.nil? || token.empty?
 
+      @intents = intents == :all ? INTENTS.values.reduce(&:|) : calculate_intents(intents)
+
       @token = process_token(@type, token)
-      @gateway = Gateway.new(self, @token, @shard_key, @compress_mode)
+      @gateway = Gateway.new(self, @token, @shard_key, @compress_mode, @intents)
 
       init_cache
 
@@ -283,7 +286,7 @@ module Discordrb
 
       server_id_str = server ? "&guild_id=#{server.id}" : ''
       permission_bits_str = permission_bits ? "&permissions=#{permission_bits}" : ''
-      "https://discordapp.com/oauth2/authorize?&client_id=#{@client_id}#{server_id_str}#{permission_bits_str}&scope=bot"
+      "https://discord.com/oauth2/authorize?&client_id=#{@client_id}#{server_id_str}#{permission_bits_str}&scope=bot"
     end
 
     # @return [Hash<Integer => VoiceBot>] the voice connections this bot currently has, by the server ID to which they are connected.
@@ -432,7 +435,7 @@ module Discordrb
     end
 
     # Creates a new application to do OAuth authorization with. This allows you to use OAuth to authorize users using
-    # Discord. For information how to use this, see the docs: https://discordapp.com/developers/docs/topics/oauth2
+    # Discord. For information how to use this, see the docs: https://discord.com/developers/docs/topics/oauth2
     # @param name [String] What your application should be called.
     # @param redirect_uris [Array<String>] URIs that Discord should redirect your users to after authorizing.
     # @return [Array(String, String)] your applications' client ID and client secret to be used in OAuth authorization.
@@ -513,7 +516,7 @@ module Discordrb
       @gateway.send_status_update(status, since, activity_obj, afk)
 
       # Update the status in the cache
-      profile.update_presence('status' => status.to_s, 'game' => activity_obj)
+      profile.update_presence('status' => status.to_s, 'activities' => [activity_obj])
     end
 
     # Sets the currently playing game to the specified game.
@@ -1013,7 +1016,7 @@ module Discordrb
 
     def handle_dispatch(type, data)
       # Check whether there are still unavailable servers and there have been more than 10 seconds since READY
-      if @unavailable_servers&.positive? && (Time.now - @unavailable_timeout_time) > 10
+      if @unavailable_servers&.positive? && (Time.now - @unavailable_timeout_time) > 10 && !(@intents & INTENTS[:servers]).zero?
         # The server streaming timed out!
         LOGGER.debug("Server streaming timed out with #{@unavailable_servers} servers remaining")
         LOGGER.debug('Calling ready now because server loading is taking a long time. Servers may be unavailable due to an outage, or your bot is on very large servers.')
@@ -1395,6 +1398,25 @@ module Discordrb
 
         await_event = Discordrb::Events::AwaitEvent.new(await, event, self)
         raise_event(await_event)
+      end
+    end
+
+    def calculate_intents(intents)
+      intents.reduce(0) do |sum, intent|
+        case intent
+        when Symbol
+          if INTENTS[intent]
+            sum | INTENTS[intent]
+          else
+            LOGGER.warn("Unknown intent: #{intent}")
+            sum
+          end
+        when Integer
+          sum | intent
+        else
+          LOGGER.warn("Invalid intent: #{intent}")
+          sum
+        end
       end
     end
   end

@@ -148,7 +148,8 @@ module Discordrb::Voice
     end
 
     # Sets whether or not the bot is speaking (green circle around user).
-    # @param value [true, false] whether or not the bot should be speaking.
+    # @param value [true, false, Integer] whether or not the bot should be speaking, or a bitmask denoting the audio type
+    # @note https://discordapp.com/developers/docs/topics/voice-connections#speaking for information on the speaking bitmask
     def speaking=(value)
       @playing = value
       @ws.send_speaking(value)
@@ -219,11 +220,14 @@ module Discordrb::Voice
       end
 
       # If the stream is a process, kill it
-      if encoded_io.respond_to? :pid
+      if encoded_io&.pid
         Discordrb::LOGGER.debug("Killing ffmpeg process with pid #{encoded_io.pid.inspect}")
 
         begin
-          Process.kill('TERM', encoded_io.pid)
+          pid = encoded_io.pid
+          # Windows does not support TERM as a kill signal, so we use KILL. `Process.waitpid` verifies that our
+          # child process has not already completed.
+          Process.kill(Gem.win_platform? ? 'KILL' : 'TERM', pid) if Process.waitpid(pid, Process::WNOHANG).nil?
         rescue StandardError => e
           Discordrb::LOGGER.warn('Failed to kill ffmpeg process! You *might* have a process leak now.')
           Discordrb::LOGGER.warn("Reason: #{e}")

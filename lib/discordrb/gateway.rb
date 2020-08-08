@@ -143,7 +143,7 @@ module Discordrb
     # @return [true, false] whether or not this gateway should check for heartbeat ACKs.
     attr_accessor :check_heartbeat_acks
 
-    def initialize(bot, token, shard_key = nil, compress_mode = :stream)
+    def initialize(bot, token, shard_key = nil, compress_mode = :stream, intents = ALL_INTENTS)
       @token = token
       @bot = bot
 
@@ -155,6 +155,7 @@ module Discordrb
       @check_heartbeat_acks = true
 
       @compress_mode = compress_mode
+      @intents = intents
     end
 
     # Connect to the gateway server in a separate thread
@@ -308,7 +309,8 @@ module Discordrb
         token: token,
         properties: properties,
         compress: compress,
-        large_threshold: large_threshold
+        large_threshold: large_threshold,
+        intents: @intents
       }
 
       # Don't include the shard key at all if it is nil as Discord checks for its mere existence
@@ -367,7 +369,7 @@ module Discordrb
       @instant_reconnect = true
       @should_reconnect = true
 
-      close
+      close(4000)
     end
 
     # Sends a resume packet (op 6). This replays all events from a previous point specified by its packet sequence. This
@@ -714,6 +716,7 @@ module Discordrb
 
         @session = Session.new(data['session_id'])
         @session.sequence = 0
+        @bot.__send__(:notify_ready) if (@intents & INTENTS[:servers]).zero?
       when :RESUMED
         # The RESUMED event is received after a successful op 6 (resume). It does nothing except tell the bot the
         # connection is initiated (like READY would). Starting with v5, it doesn't set a new heartbeat interval anymore
@@ -808,7 +811,7 @@ module Discordrb
       end
     end
 
-    def send(data, type = :text)
+    def send(data, type = :text, code = nil)
       LOGGER.out(data)
 
       unless @handshaked && !@closed
@@ -817,7 +820,7 @@ module Discordrb
       end
 
       # Create the frame we're going to send
-      frame = ::WebSocket::Frame::Outgoing::Client.new(data: data, type: type, version: @handshake.version)
+      frame = ::WebSocket::Frame::Outgoing::Client.new(data: data, type: type, version: @handshake.version, code: code)
 
       # Try to send it
       begin
@@ -829,7 +832,7 @@ module Discordrb
       end
     end
 
-    def close
+    def close(code = 1000)
       # If we're already closed, there's no need to do anything - return
       return if @closed
 
@@ -837,7 +840,7 @@ module Discordrb
       @session&.suspend
 
       # Send a close frame (if we can)
-      send nil, :close unless @pipe_broken
+      send nil, :close, code unless @pipe_broken
 
       # We're officially closed, notify the main loop.
       @closed = true

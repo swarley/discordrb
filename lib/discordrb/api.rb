@@ -9,7 +9,7 @@ require 'discordrb/errors'
 # List of methods representing endpoints in Discord's API
 module Discordrb::API
   # The base URL of the Discord REST API.
-  APIBASE = 'https://discordapp.com/api/v6'
+  APIBASE = 'https://discord.com/api/v6'
 
   # The URL of Discord's CDN
   CDN_URL = 'https://cdn.discordapp.com'
@@ -205,6 +205,16 @@ module Discordrb::API
   # Make an emoji icon URL from emoji ID
   def emoji_icon_url(emoji_id, format = 'webp')
     "#{cdn_url}/emojis/#{emoji_id}.#{format}"
+  end
+
+  # Make an asset URL from application and asset IDs
+  def asset_url(application_id, asset_id, format = 'webp')
+    "#{cdn_url}/app-assets/#{application_id}/#{asset_id}.#{format}"
+  end
+
+  # Make an achievement icon URL from application ID, achievement ID, and icon hash
+  def achievement_icon_url(application_id, achievement_id, icon_hash, format = 'webp')
+    "#{cdn_url}/app-assets/#{application_id}/achievements/#{achievement_id}/icons/#{icon_hash}.#{format}"
   end
 
   # Login to the server
