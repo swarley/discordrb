@@ -31,9 +31,8 @@ bot.message(start_with: '!game') do |event|
     # Their message is a string - cast it to an integer
     guess = guess_event.message.content.to_i
 
-    # If the block returns false, then the
+    # If the block returns anything that *isn't* true, then the
     # event handler will persist and continue to handle messages.
-    # If it returns true, it will cancel itself.
     if guess == magic
       # This returns `true`, which will destroy the await so we don't reply anymore
       guess_event.respond 'you win!'
