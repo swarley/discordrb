@@ -46,7 +46,7 @@ bot.message(start_with: '!game') do |event|
       false
     end
   end
-  event.respond "My number was: `#{magic.to_s}`."
+  event.respond "My number was: `#{magic}`."
 end
 
 # Above we used the provided User#await! method to easily set up
