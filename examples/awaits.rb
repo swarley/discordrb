@@ -7,7 +7,7 @@
 require 'discordrb'
 
 # Create a bot
-bot = Discordrb::Bot.new token: 'yourbottoken'
+bot = Discordrb::Bot.new token: 'your_bot_token'
 
 # Discordrb features an Awaits system that allows you to instantiate
 # temporary event handlers. The following example depicts a simple
@@ -25,6 +25,8 @@ bot.message(start_with: '!game') do |event|
   # Await a MessageEvent specifically from the invoking user.
   # Timeout defines how long a user can spend playing one game.
   # This does not affect subsequent games.
+  #
+  # You can omit the options hash if you don't want a timeout.
   event.user.await!({timeout: 300}) do |guess_event|
     # Their message is a string - cast it to an integer
     guess = guess_event.message.content.to_i
