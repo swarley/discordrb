@@ -27,7 +27,7 @@ bot.message(start_with: '!game') do |event|
   # This does not affect subsequent games.
   #
   # You can omit the options hash if you don't want a timeout.
-  event.user.await!({timeout: 300}) do |guess_event|
+  event.user.await!(timeout: 300) do |guess_event|
     # Their message is a string - cast it to an integer
     guess = guess_event.message.content.to_i
 
@@ -69,7 +69,7 @@ bot.message(content: '!time') do |event|
 
   # Add an await for a ReactionAddEvent, that will only trigger for reactions
   # that match our CROSS_MARK emoji. To prevent the bot from cluttering up threads, we destroy the await after 30 seconds.
-  bot.add_await!(Discordrb::Events::ReactionAddEvent, {timeout: 30}) do |reaction_event|
+  bot.add_await!(Discordrb::Events::ReactionAddEvent, timeout: 30) do |reaction_event|
     # Ignore all ReactionAddEvents not affecting our message or reactions not being the CROSS_MARK
     next if message.id != reaction_event.message.id || reaction_event.emoji.to_reaction != CROSS_MARK
     
@@ -79,7 +79,7 @@ bot.message(content: '!time') do |event|
   end
   # This code executes after our await concludes, or when the timeout runs out.
   # For demonstration purposes, it just prints "Await destroyed.". In your actual code you might want to edit the message or something alike.
-  puts "Await destroyed."
+  puts 'Await destroyed.'
 end
 
 # Connect to Discord
