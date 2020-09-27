@@ -72,7 +72,7 @@ bot.message(content: '!time') do |event|
   bot.add_await!(Discordrb::Events::ReactionAddEvent, timeout: 30) do |reaction_event|
     # Ignore all ReactionAddEvents not affecting our message or reactions not being the CROSS_MARK
     next if message.id != reaction_event.message.id || reaction_event.emoji.to_reaction != CROSS_MARK
-    
+
     # A CROSS_MARK reaction was added.
     message.delete # Delete the bot message
     event.message.delete # Delete the user message
