@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
+# For use with bundler:
+# require 'rubygems'
+# require 'bundler/setup'
+
 require 'discordrb'
 
 # Create a bot
-bot = Discordrb::Bot.new token: 'token'
+bot = Discordrb::Bot.new token: 'yourbottoken'
 
 # Discordrb features an Awaits system that allows you to instantiate
 # temporary event handlers. The following example depicts a simple
@@ -15,13 +19,13 @@ bot.message(start_with: '!game') do |event|
   # Pick a number between 1 and 10
   magic = rand(1..10)
 
+  # Tell the user that we're ready.
+  event.respond "Can you guess my secret number? It's between 1 and 10!"
+
   # Await a MessageEvent specifically from the invoking user.
-  #
-  # Note that since the identifier I'm using here is `:guess`,
-  # only one person can be playing at one time. You can otherwise
-  # interpolate something into a symbol to have multiple awaits
-  # for this "command" available at the same time.
-  event.user.await(:guess) do |guess_event|
+  # Timeout defines how long a user can spend playing one game.
+  # This does not affect subsequent games.
+  event.user.await!({timeout: 300}) do |guess_event|
     # Their message is a string - cast it to an integer
     guess = guess_event.message.content.to_i
 
@@ -30,6 +34,7 @@ bot.message(start_with: '!game') do |event|
     if guess == magic
       # This returns `nil`, which will destroy the await so we don't reply anymore
       guess_event.respond 'you win!'
+      true
     else
       # Let the user know if they guessed too high or low.
       guess_event.respond(guess > magic ? 'too high' : 'too low')
@@ -38,47 +43,46 @@ bot.message(start_with: '!game') do |event|
       false
     end
   end
-
-  # Let the user know we're  ready and listening..
-  event.respond 'Guess a number between 1 and 10..'
+  event.respond "My number was: `#{magic.to_s}`."
 end
 
-# Above we used the provided User#await method to easily set up
+# Above we used the provided User#await! method to easily set up
 # an await for a follow-up message from a user.
 # We can also manually register an await for specific kinds of events.
 # Here, we'll write a command that shows the current time and allows
 # the user to delete the message with a reaction.
-# We'll be using Bot#add_await to do this:
-# https://www.rubydoc.info/gems/discordrb/Discordrb%2FBot:add_await
+# We'll be using Bot#add_await! to do this:
+# https://rubydoc.info/github/swarley/discordrb/Discordrb%2FBot:add_await!
 
 # the unicode ":x:" emoji
 CROSS_MARK = "\u274c"
 
 bot.message(content: '!time') do |event|
-  # Send a message, and store a reference to it that we can issue a delete request later
+  # Send a message, and store a reference to it that we can add the reaction.
   message = event.respond "The current time is: #{Time.now.strftime('%F %T %Z')}"
 
   # React to the message to give a user an easy "button" to press
   message.react CROSS_MARK
 
   # Add an await for a ReactionAddEvent, that will only trigger for reactions
-  # that match our CROSS_MARK emoji. This time, I'm using interpolation to make the
-  # await key unique for this event so that multiple awaits can exist.
-  bot.add_await(:"delete_#{message.id}", Discordrb::Events::ReactionAddEvent, emoji: CROSS_MARK) do |reaction_event|
-    # Since this code will run on every CROSS_MARK reaction, it might not
-    # be on our time message we sent earlier. We use `next` to skip the rest
-    # of the block unless it was our message that was reacted to.
-    next true unless reaction_event.message.id == message.id
-
-    # Delete the matching message.
-    message.delete
+  # that match our CROSS_MARK emoji. To prevent the bot from cluttering up threads, we destroy the await after 30 seconds.
+  bot.add_await!(Discordrb::Events::ReactionAddEvent, {timeout: 30}) do |reaction_event|
+    # Ignore all ReactionAddEvents not affecting our message or reactions not being the CROSS_MARK
+    next if message.id != reaction_event.message.id || reaction_event.emoji.to_reaction != CROSS_MARK
+    
+    # A CROSS_MARK reaction was added.
+    message.delete # Delete the bot message
+    event.message.delete # Delete the user message
   end
+  # This code executes after our await concludes, or when the timeout runs out.
+  # For demonstration purposes, it just prints "Await destroyed.". In your actual code you might want to edit the message or something alike.
+  puts "Await destroyed."
 end
 
 # Connect to Discord
 bot.run
 
 # For more details about Awaits, see:
-# https://www.rubydoc.info/gems/discordrb/Discordrb/Await
+# https://www.rubydoc.info/gems/swarley/Discordrb/Await
 # For a list of events you can use to await for, see:
-# https://www.rubydoc.info/gems/discordrb/Discordrb/Events
+# https://www.rubydoc.info/gems/swarley/Discordrb/Events
