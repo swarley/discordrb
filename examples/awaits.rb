@@ -7,7 +7,7 @@
 require 'discordrb'
 
 # Create a bot
-bot = Discordrb::Bot.new token: 'your_bot_token'
+bot = Discordrb::Bot.new token: 'B0T.T0KEN.here'
 
 # Discordrb features an Awaits system that allows you to instantiate
 # temporary event handlers. The following example depicts a simple
