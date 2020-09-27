@@ -54,7 +54,7 @@ end
 # Here, we'll write a command that shows the current time and allows
 # the user to delete the message with a reaction.
 # We'll be using Bot#add_await! to do this:
-# https://rubydoc.info/github/swarley/discordrb/Discordrb%2FBot:add_await!
+# https://www.rubydoc.info/gems/discordrb/Discordrb%2FBot:add_await!
 
 # the unicode ":x:" emoji
 CROSS_MARK = "\u274c"
