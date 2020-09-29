@@ -80,6 +80,6 @@ end
 bot.run
 
 # For more details about Awaits, see:
-# https://www.rubydoc.info/gems/swarley/Discordrb/Await
+# https://www.rubydoc.info/gems/discordrb/Discordrb/Await
 # For a list of events you can use to await for, see:
-# https://www.rubydoc.info/gems/swarley/Discordrb/Events
+# https://www.rubydoc.info/gems/discordrb/Discordrb/Events
