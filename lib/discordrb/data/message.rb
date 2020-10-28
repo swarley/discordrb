@@ -92,6 +92,8 @@ module Discordrb
                     # Turn the message user into a recipient - we can't use the channel recipient
                     # directly because the bot may also send messages to the channel
                     Recipient.new(bot.user(data['author']['id'].to_i), @channel, bot)
+                  elsif @bot.instance_variable_get(:@intents) & Discordrb::INTENTS[:server_members]
+                    @bot.ensure_user(data['author'])
                   else
                     member = @channel.server.member(data['author']['id'].to_i)
 
