@@ -93,16 +93,20 @@ module Discordrb
                     # directly because the bot may also send messages to the channel
                     Recipient.new(bot.user(data['author']['id'].to_i), @channel, bot)
                   elsif @bot.instance_variable_get(:@intents) & Discordrb::INTENTS[:server_members]
-                    @bot.ensure_user(data['author'])
+                    _data = data['member']
+                    _data['user'] = data['author']
+                    Member.new(_data, @server, @bot)
                   else
-                    member = @channel.server.member(data['author']['id'].to_i)
+                    member = @channel.server.member(data['author']['id'].to_i, false)
 
-                    unless member
+                    if member.nil?
                       Discordrb::LOGGER.debug("Member with ID #{data['author']['id']} not cached (possibly left the server).")
-                      member = @bot.ensure_user(data['author'])
+                      member_data = data['member']
+                      member_data['user'] = data['author']
+                      Member.new(member_data, @server, @bot)
+                    else
+                      member
                     end
-
-                    member
                   end
                 end
 
